@@ -1,4 +1,9 @@
+import '../.jest/next-image.mock'
+
+import { RouterContext } from 'next/dist/shared/lib/router-context'
+
 import { ThemeProvider } from 'styled-components'
+
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 
@@ -8,18 +13,17 @@ export const parameters = {
     values: [
       {
         name: 'light',
-        value: theme.colors.background.default
+        value: theme.colors.white
       },
       {
         name: 'dark',
-        value: theme.colors.background.buttonPrimary
-      },
-      {
-        name: 'brand',
-        value: theme.colors.background.brand
+        value: theme.colors.black
       }
     ]
-  }
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
+  },
 }
 
 export const decorators = [
