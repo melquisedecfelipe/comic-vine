@@ -9,10 +9,10 @@ export type ScrollButtonsProps = {
 
 const ScrollButtons = ({ handleDown, handleUp }: ScrollButtonsProps) => (
   <S.Wrapper>
-    <Button variant="outlined" onClick={handleDown} arial-label="Down">
+    <Button aria-label="Down" variant="outlined" onClick={handleDown}>
       Down
     </Button>
-    <Button variant="outlined" onClick={handleUp} arial-label="Up">
+    <Button aria-label="Up" variant="outlined" onClick={handleUp}>
       Up
     </Button>
   </S.Wrapper>
