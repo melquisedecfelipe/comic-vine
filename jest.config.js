@@ -6,7 +6,10 @@ module.exports = {
     'src/**/*.ts(x)?',
     '!src/**/stories.tsx',
     '!src/**/styles.ts',
+    '!src/config/**/*.ts',
+    '!src/pages/**/*.ts',
     '!src/pages/**/*.tsx',
+    '!src/services/**/*.ts',
     '!src/styles/**/*.ts',
     '!src/types/**/*.d.ts',
     '!src/**/mock.ts'
