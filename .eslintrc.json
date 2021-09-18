@@ -45,13 +45,15 @@
           "/^next/",
           "/^react/",
           "module",
+          "/pages/",
           "/template/",
           "/components/",
           "/hooks/",
           "/services/",
           "/utils/",
-          "/types/",
-          "/styles/"
+          "/styles/",
+          "/config/",
+          "/types/"
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
