@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> should render the card 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  background: #FFFFFF;
+  border-bottom: 1px solid #F0ECFC;
+  padding: 16px 0;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.c0 img {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.c0:hover img {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.c1 {
+  height: 100%;
+  width: 175px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+}
+
+.c2 small {
+  font-size: 12px;
+  color: #707372;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.c2 h3 {
+  font-family: Barlow,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 12px 0;
+}
+
+.c2 p {
+  font-size: 16px;
+  color: #707372;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin: 4px 0;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    margin-top: 0;
+    margin-left: 16px;
+  }
+}
+
+<div>
+  <div
+    aria-label="Character"
+    class="c0"
+    role="link"
+  >
+    <aside
+      class="c1"
+    >
+      <img
+        alt="Spider-Man"
+        height="250"
+        layout="responsive"
+        src="https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8126579-amazing_spider-man_vol_5_54_stormbreakers_variant_textless.jpg"
+        width="175"
+      />
+    </aside>
+    <section
+      class="c2"
+    >
+      <span>
+        <small>
+          Oct 14, 1962
+        </small>
+        <h3>
+          Spider-Man
+        </h3>
+      </span>
+      <p>
+        Peter Parker was bitten by a radioactive spider as a teenager, granting him spider-like powers. After the death of his Uncle Ben, Peter learned that "with great power, comes great responsibility." Swearing to always protect the innocent from harm, Peter Parker became Spider-Man.
+      </p>
+      <small>
+        Aliases: 
+        Peter Parker Captain Universe Dusk Hornet Prodigy Ricochet Bombastic Bag-Man Poison Pestilence Spidey Wallcrawler Webslinger Web-Head Your Friendly Neighborhood Spider-Man Spider-Kid
+      </small>
+    </section>
+  </div>
+</div>
+`;
