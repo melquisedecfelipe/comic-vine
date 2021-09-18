@@ -1,5 +1,3 @@
-import { withNextRouter } from 'storybook-addon-next-router'
-
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 import Card, { CardProps } from '.'
