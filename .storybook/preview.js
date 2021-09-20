@@ -4,6 +4,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context'
 
 import { ThemeProvider } from 'styled-components'
 
+import { CharactersContext, CharactersContextDefaultValues } from '../src/hooks/useCharacters'
+
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 
@@ -27,10 +29,18 @@ export const parameters = {
 }
 
 export const decorators = [
-  (Story) => (
+  (Story, context) => (
     <ThemeProvider theme={theme}>
-      <GlobalStyles removeBg />
-      <Story />
+      <CharactersContext.Provider
+        value={{
+          ...CharactersContextDefaultValues,
+          ...(context?.args?.charactersContextValue || {}),
+          ...context.args
+        }}
+      >
+        <GlobalStyles />
+        <Story />
+      </CharactersContext.Provider>
     </ThemeProvider>
   )
 ]
