@@ -52,7 +52,7 @@ export default function Home() {
 
     push({
       pathname: '/',
-      query: { filter: '', page: 1 }
+      query: { name: '', page: 1 }
     })
   }, [setName, push])
 
