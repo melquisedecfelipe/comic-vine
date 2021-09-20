@@ -6,9 +6,19 @@ const api = axios.create({
   baseURL: 'http://localhost:3000/api/'
 })
 
-export const getCharacters = async (page = 0, limit = 20) => {
+type GetCharactersProps = {
+  filter?: string
+  limit?: number
+  page?: number
+}
+
+export const getCharacters = async ({
+  filter,
+  limit = 20,
+  page = 0
+}: GetCharactersProps) => {
   const { data } = await api.get<CharactersResponse>('characters', {
-    params: { page, limit }
+    params: { filter, limit, page }
   })
 
   return data

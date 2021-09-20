@@ -12,7 +12,7 @@ const bffCharactersHandler = async (
 ) => {
   const {
     method,
-    query: { page, limit }
+    query: { filter, limit, page }
   } = request
 
   switch (method) {
@@ -23,7 +23,8 @@ const bffCharactersHandler = async (
             api_key: 'cd2a0bcafaff4518a30153326ebfb3bb971c5bba',
             format: 'json',
             limit,
-            offset: Number(page) * Number(limit)
+            offset: Number(page) * Number(limit),
+            filter: `name:${filter}`
           }
         })
         .then(({ data }) => {
