@@ -11,30 +11,32 @@ export type OptionProps = {
 }
 
 export type CharacterAutocompleteProps = {
-  onInputChange?: (value: string | OptionProps | null) => void
+  handleChange?: (value: string | OptionProps | null) => void
   initialValue?: string
   options: OptionProps[]
 }
 
 const CharacterAutocomplete = ({
-  onInputChange,
+  handleChange,
+  initialValue,
   options
 }: CharacterAutocompleteProps) => {
   const {
-    getRootProps,
+    focused,
     getInputLabelProps,
     getInputProps,
     getListboxProps,
     getOptionProps,
-    groupedOptions,
-    focused
+    getRootProps,
+    groupedOptions
   } = useAutocomplete({
-    options,
     freeSolo: true,
-    openOnFocus: true,
     getOptionLabel: option => option.title,
-    onChange: (event, value) => !!onInputChange && onInputChange(value),
-    onInputChange: (event, value) => !!onInputChange && onInputChange(value)
+    inputValue: initialValue,
+    onInputChange: (event, value) => !!handleChange && handleChange(value),
+    onChange: (event, value) => !!handleChange && handleChange(value),
+    options,
+    openOnFocus: true
   })
 
   return (
@@ -44,7 +46,11 @@ const CharacterAutocomplete = ({
           <SearchIcon />
         </label>
 
-        <input placeholder="Search character by name" {...getInputProps()} />
+        <input
+          placeholder="Search character by name"
+          {...getInputProps()}
+          value={initialValue}
+        />
       </S.Group>
 
       {groupedOptions.length > 0 && (
