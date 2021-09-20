@@ -7,8 +7,8 @@ export const Wrapper = styled.form`
   flex-direction: column;
 
   ${media.greaterThan('medium')`
-      flex-direction: row;
-    `}
+    flex-direction: row;
+  `}
 
   > div {
     width: 100%;
