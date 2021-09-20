@@ -37,12 +37,13 @@ export const Wrapper = styled.button<WrapperProps>`
     font-size: ${theme.font.familyBarlow};
     font-weight: ${theme.font.semiBold};
     font-size: ${theme.font.sizes.medium};
-    padding: ${theme.spacings.small} ${theme.spacings.medium};
+    padding: 0 ${theme.spacings.medium};
     cursor: pointer;
     border: none;
     text-decoration: none;
     transition: ${theme.transition.default};
-    height: ${theme.font.sizes.huge};
+    min-height: 40px;
+    max-height: 40px;
 
     &:focus {
       opacity: 0.75;

@@ -9,7 +9,7 @@ describe('<Button />', () => {
     expect(
       screen.getByRole('button', { name: /button component/i })
     ).toHaveStyle({
-      padding: '12px 16px',
+      padding: '0px 16px',
       'font-size': '16px',
       color: '#FFFFFF',
       background: '#000000'

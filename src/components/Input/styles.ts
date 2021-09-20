@@ -11,6 +11,7 @@ export const Wrapper = styled.div<WrapperProps>`
     font-size: ${theme.font.sizes.medium};
     padding: 0 ${theme.spacings.medium};
     border: 1px solid ${focused ? theme.colors.black : theme.colors.grey};
+    height: 40px;
 
     > label {
       margin-right: ${theme.spacings.medium};
@@ -29,7 +30,7 @@ export const Wrapper = styled.div<WrapperProps>`
       font-family: ${theme.font.familyBarlow};
       font-size: ${theme.font.sizes.medium};
       color: ${focused ? theme.colors.black : theme.colors.grey};
-      height: 40px;
+      height: max-content;
 
       &:focus {
         outline: none;
