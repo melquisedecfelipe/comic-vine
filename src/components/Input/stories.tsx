@@ -8,10 +8,10 @@ export default {
   title: 'Form/Input',
   component: Input,
   args: {
+    initialValue: '',
+    icon: SearchIcon,
     label: 'Search',
     name: 'search',
-    icon: SearchIcon,
-    initialValue: '',
     placeholder: 'Search here'
   },
   argTypes: {
