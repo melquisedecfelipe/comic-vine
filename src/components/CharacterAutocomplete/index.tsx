@@ -5,14 +5,21 @@ import { Search as SearchIcon } from '@styled-icons/boxicons-regular/Search'
 
 import * as S from './styles'
 
-import mock from './mock'
-
-export type OptionsProps = {
+export type OptionProps = {
   icon: string
   title: string
 }
 
-const CharacterAutocomplete = () => {
+export type CharacterAutocompleteProps = {
+  onInputChange?: (value: string | OptionProps | null) => void
+  initialValue?: string
+  options: OptionProps[]
+}
+
+const CharacterAutocomplete = ({
+  onInputChange,
+  options
+}: CharacterAutocompleteProps) => {
   const {
     getRootProps,
     getInputLabelProps,
@@ -22,8 +29,12 @@ const CharacterAutocomplete = () => {
     groupedOptions,
     focused
   } = useAutocomplete({
-    options: mock,
-    getOptionLabel: option => option.title
+    options,
+    freeSolo: true,
+    openOnFocus: true,
+    getOptionLabel: option => option.title,
+    onChange: (event, value) => !!onInputChange && onInputChange(value),
+    onInputChange: (event, value) => !!onInputChange && onInputChange(value)
   })
 
   return (
@@ -36,7 +47,7 @@ const CharacterAutocomplete = () => {
         <input placeholder="Search character by name" {...getInputProps()} />
       </S.Group>
 
-      {groupedOptions.length > 0 ? (
+      {groupedOptions.length > 0 && (
         <S.CharactersList {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
             <S.CharacterItem
@@ -48,14 +59,13 @@ const CharacterAutocomplete = () => {
                 src={option.icon}
                 width={50}
                 height={50}
-                layout="fill"
               />
 
               <p>{option.title}</p>
             </S.CharacterItem>
           ))}
         </S.CharactersList>
-      ) : null}
+      )}
     </S.Wrapper>
   )
 }

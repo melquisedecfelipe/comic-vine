@@ -15,6 +15,7 @@ export const Group = styled.div<GroupProps>`
     font-size: ${theme.font.sizes.medium};
     padding: 0 ${theme.spacings.medium};
     border: 1px solid ${focused ? theme.colors.black : theme.colors.grey};
+    height: 40px;
 
     > label {
       margin-right: ${theme.spacings.medium};
@@ -33,7 +34,7 @@ export const Group = styled.div<GroupProps>`
       font-family: ${theme.font.familyBarlow};
       font-size: ${theme.font.sizes.medium};
       color: ${focused ? theme.colors.black : theme.colors.grey};
-      height: 40px;
+      height: max-content;
 
       &:focus {
         outline: none;
@@ -49,7 +50,7 @@ export const CharactersList = styled.ul`
     max-height: 300px;
     z-index: ${theme.layers.alwaysOnTop};
     background: ${theme.colors.white};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: absolute;
     list-style: none;
     overflow-y: auto;
