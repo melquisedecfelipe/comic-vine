@@ -24,7 +24,7 @@ const bffCharactersHandler = async (
             format: 'json',
             limit,
             offset: Number(page) * Number(limit),
-            filter: `name:${filter}`
+            ...(filter && { filter: `name:${filter}` })
           }
         })
         .then(({ data }) => {
