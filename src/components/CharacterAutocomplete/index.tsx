@@ -58,6 +58,7 @@ const CharacterAutocomplete = ({
           {groupedOptions.map((option, index) => (
             <S.CharacterItem
               key={option.title}
+              aria-label={option.title}
               {...getOptionProps({ option, index })}
             >
               <Image

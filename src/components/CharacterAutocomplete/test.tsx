@@ -31,4 +31,28 @@ describe('<CharacterAutocomplete />', () => {
       border: '1px solid #000000'
     })
   })
+
+  it('should render the autocomplete list on as focus', () => {
+    render(<CharacterAutocomplete {...mock} />)
+
+    const input = screen.getByPlaceholderText('Search character by name')
+
+    fireEvent.focus(input)
+
+    expect(screen.getByRole('listbox')).toBeInTheDocument()
+  })
+
+  it('should render valu in autocomplete on click option', async () => {
+    render(<CharacterAutocomplete {...mock} />)
+
+    const input = screen.getByPlaceholderText('Search character by name')
+
+    fireEvent.focus(input)
+
+    const option = screen.getByRole('option', { name: /iron man/i })
+
+    fireEvent.click(option)
+
+    expect(screen.queryByRole('listbox')).toBeNull()
+  })
 })
