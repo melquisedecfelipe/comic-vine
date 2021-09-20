@@ -9,8 +9,6 @@ export default {
 
 export const Default: Story<LoadingProps> = args => <Loading {...args} />
 
-export const asFullPage: Story = args => <Loading {...args} />
-
-asFullPage.args = {
-  isFullPage: true
+Default.args = {
+  isFullPage: false
 }
