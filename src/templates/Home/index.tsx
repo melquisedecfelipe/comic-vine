@@ -1,146 +1,147 @@
 import { useRouter } from 'next/router'
 
-import React, { useCallback, useEffect, useReducer } from 'react'
-import { useQuery } from 'react-query'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import Button from 'components/Button'
 import Card from 'components/Card'
+import { OptionProps } from 'components/CharacterAutocomplete'
+import mockCharacterAutocomplete from 'components/CharacterAutocomplete/mock'
 import Empty from 'components/Empty'
 import { Grid } from 'components/Grid'
 import Loading from 'components/Loading'
+import SearchForm from 'components/SearchForm'
 
-import { getCharacters } from 'services/api'
+import { useCharacters } from 'hooks/useCharacters'
 
 import * as S from './styles'
-
-import { QUERY_CHARACTERS } from 'config/constants'
 
 import { Character } from 'types/characters'
 
 import Base from '../Base'
 
-type Type = 'NEXT' | 'PREVIOUS' | 'UPDATE'
-
-type Action = {
-  payload: number
-  type: Type
-}
-
-const initialPageState = { page: 1 }
-
-const reducerPage = (state: typeof initialPageState, action: Action) => {
-  switch (action.type) {
-    case 'NEXT':
-      return { page: state.page + 1 }
-    case 'PREVIOUS':
-      return { page: state.page - 1 }
-    case 'UPDATE':
-      return { page: action.payload }
-    default:
-      return state
-  }
-}
+type OptionValueProps = string | OptionProps | null
 
 export default function Home() {
-  const { push, query } = useRouter()
+  const {
+    data,
+    filter,
+    handlePage,
+    handleSubmit,
+    isFetching,
+    isLoading,
+    setName,
+    totalItems,
+    totalPages
+  } = useCharacters()
 
-  const [pageState, pageDispatch] = useReducer(reducerPage, initialPageState)
+  const { push } = useRouter()
 
-  const { data, isFetching, isLoading } = useQuery(
-    [QUERY_CHARACTERS, pageState.page],
-    () => getCharacters(pageState.page - 1),
-    {
-      refetchOnWindowFocus: false,
-      keepPreviousData: true
+  const [filterName, setFilterName] = useState(filter.name)
+
+  const handleChange = useCallback((value: OptionValueProps) => {
+    if (value && typeof value === 'object') {
+      return setFilterName(value?.title)
     }
-  )
 
-  const handlePage = useCallback(
-    (type: Type) => {
-      const page = Number(query.page) || initialPageState.page
+    setFilterName(value || '')
+  }, [])
 
-      if (type === 'NEXT') {
-        push({
-          pathname: '/',
-          query: { page: page + 1 }
-        })
-      } else if (type === 'PREVIOUS') {
-        push({
-          pathname: '/',
-          query: { page: page - 1 }
-        })
-      }
-    },
-    [push, query.page]
-  )
+  const handleClear = useCallback(() => {
+    setFilterName('')
+    setName('')
 
-  useEffect(() => {
-    if (query.page) {
-      const page = Number(query.page)
+    push({
+      pathname: '/',
+      query: { filter: '', page: 1 }
+    })
+  }, [setName, push])
 
-      pageDispatch({ type: 'UPDATE', payload: page })
+  const optionsCharacterAutocomplete = useMemo<OptionProps[]>(() => {
+    if (data && data?.length !== 0) {
+      return data.map(character => ({
+        icon: character.images.icon,
+        title: character.name
+      }))
     }
-  }, [query.page])
+
+    return mockCharacterAutocomplete.options
+  }, [data])
 
   return (
     <Base>
-      <S.Wrapper>
-        {isLoading ? (
-          <S.Loader>
-            <Loading />
-          </S.Loader>
-        ) : (
-          <>
-            {isFetching && <Loading isFullPage />}
+      {isLoading ? (
+        <S.LoadingWrapper>
+          <Loading />
+        </S.LoadingWrapper>
+      ) : (
+        <S.Wrapper>
+          {isFetching && <Loading isFullPage />}
 
-            {data?.results.length === 0 && <Empty />}
+          <S.SearchFormWrapper>
+            <SearchForm
+              handleChange={handleChange}
+              handleClear={handleClear}
+              handleSubmit={event => handleSubmit(event, filterName)}
+              initialValue={filterName}
+              optionsCharacterAutocomplete={optionsCharacterAutocomplete}
+            />
+          </S.SearchFormWrapper>
 
-            {data?.totalPages !== 0 && (
-              <S.Info>
-                Page: <strong>{pageState.page || 1}</strong> | Total pages:{' '}
-                <strong>{data?.totalPages}</strong> | Items per page: 20 | Total
-                items: {data?.total}
-              </S.Info>
-            )}
+          <S.Text>
+            Page: <strong>{filter.page || 1}</strong> | Total pages:{' '}
+            <strong>{totalPages || 0}</strong> | Items per page: {filter.limit}{' '}
+            | Total items: {totalItems || 0}
+          </S.Text>
 
-            <Grid>
-              {data?.results.map((character: Character) => (
-                <Card
-                  key={character.id}
-                  aliases={character.aliases}
-                  birth={character.birth}
-                  deck={character.deck}
-                  href={character.slug}
-                  image={character.images.small}
-                  name={character.name}
-                />
-              ))}
-            </Grid>
+          {filter.name && (
+            <S.Text>
+              Search character by: <strong>{filter.name}</strong>
+            </S.Text>
+          )}
 
-            {data?.totalPages !== 0 && (
-              <S.Footer>
-                <Button
-                  variant="outlined"
-                  onClick={() => handlePage('PREVIOUS')}
-                  type="button"
-                  disabled={pageState.page === 1}
-                >
-                  Previous
-                </Button>
+          {data === undefined || (data.length === 0 && <Empty />)}
 
-                <Button
-                  variant="filled"
-                  onClick={() => handlePage('NEXT')}
-                  type="button"
-                  disabled={pageState.page === data?.totalPages}
-                >
-                  Next
-                </Button>
-              </S.Footer>
-            )}
-          </>
-        )}
-      </S.Wrapper>
+          {data && data.length > 0 && (
+            <>
+              <Grid>
+                {data.map((character: Character) => (
+                  <Card
+                    key={character.id}
+                    aliases={character.aliases}
+                    birth={character.birth}
+                    deck={character.deck}
+                    href={character.slug}
+                    image={character.images.small}
+                    name={character.name}
+                  />
+                ))}
+              </Grid>
+
+              {totalPages && totalPages > 1 && (
+                <S.ButtonWrapper>
+                  <Button
+                    disabled={filter.page === 1}
+                    onClick={() => handlePage('PREVIOUS')}
+                    variant="outlined"
+                    type="button"
+                  >
+                    Previous
+                  </Button>
+
+                  <Button
+                    disabled={filter.page === totalPages}
+                    onClick={() => handlePage('NEXT')}
+                    type="button"
+                    variant="filled"
+                  >
+                    Next
+                  </Button>
+                </S.ButtonWrapper>
+              )}
+            </>
+          )}
+        </S.Wrapper>
+      )}
     </Base>
   )
 }

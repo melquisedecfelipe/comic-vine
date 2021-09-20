@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div``
 
-export const Loader = styled.div`
+export const LoadingWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;
@@ -11,7 +11,13 @@ export const Loader = styled.div`
   `}
 `
 
-export const Info = styled.p`
+export const SearchFormWrapper = styled.div`
+  ${({ theme }) => css`
+    margin-top: ${theme.spacings.medium};
+  `}
+`
+
+export const Text = styled.p`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.medium};
     color: ${theme.colors.grey};
@@ -23,7 +29,7 @@ export const Info = styled.p`
   `}
 `
 
-export const Footer = styled.footer`
+export const ButtonWrapper = styled.footer`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;
