@@ -1,11 +1,6 @@
-import {
-  createGlobalStyle,
-  css,
-  DefaultTheme,
-  GlobalStyleComponent
-} from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
-const GlobalStyles: GlobalStyleComponent<DefaultTheme> = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'WorkSans';
     font-style: normal;
