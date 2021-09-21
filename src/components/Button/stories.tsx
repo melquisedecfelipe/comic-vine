@@ -5,6 +5,9 @@ import Button from '.'
 export default {
   title: 'Button',
   component: Button,
+  args: {
+    children: 'Button Component'
+  },
   argTypes: {
     children: {
       type: 'string'
@@ -14,10 +17,6 @@ export default {
 } as Meta
 
 export const Default: Story = args => <Button {...args} />
-
-Default.args = {
-  children: 'Button Component'
-}
 
 export const asLink: Story = args => <Button {...args} />
 

@@ -1,12 +1,15 @@
-import mock from 'components/CharacterAutocomplete/mock'
-
 import { Story, Meta } from '@storybook/react/types-6-0'
+
+import mockOptions from 'mock/options'
 
 import SearchForm, { SearchFormProps } from '.'
 
 export default {
   title: 'Form/SearchForm',
   component: SearchForm,
+  args: {
+    optionsCharacterAutocomplete: mockOptions
+  },
   argTypes: {
     handleChange: { action: 'searchFormAutocompleteChange' },
     handleClear: { action: 'searchFormClear' },
@@ -15,7 +18,3 @@ export default {
 } as Meta
 
 export const Default: Story<SearchFormProps> = args => <SearchForm {...args} />
-
-Default.args = {
-  optionsCharacterAutocomplete: mock.options
-}

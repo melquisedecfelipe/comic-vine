@@ -1,12 +1,17 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
 
+import mockCharacter from 'mock/character'
+import mockCharacters from 'mock/characters'
+
 import Card, { CardProps } from '.'
-import mock from './mock'
 
 export default {
   title: 'Card',
   component: Card,
-  args: { ...mock },
+  args: {
+    character: mockCharacter,
+    isVertical: false
+  },
   argTypes: {
     handleAddFavorite: { action: 'addFavorite' },
     handleRemoveFavorite: { action: 'removeFavorite' }
@@ -14,9 +19,9 @@ export default {
   parameters: {
     nextRouter: {
       path: '/character/[slug]',
-      asPath: `/character/${mock.character.slug}`,
+      asPath: `/character/${mockCharacter.slug}`,
       query: {
-        slug: mock.character.slug
+        slug: mockCharacter.slug
       }
     }
   }
@@ -29,3 +34,8 @@ export const Default: Story<CardProps> = args => (
 )
 
 export const IsVertical: Story<CardProps> = args => <Card {...args} />
+
+IsVertical.args = {
+  character: mockCharacters[0],
+  isVertical: true
+}

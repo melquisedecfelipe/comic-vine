@@ -4,11 +4,10 @@ import Loading, { LoadingProps } from '.'
 
 export default {
   title: 'Loading',
-  component: Loading
+  component: Loading,
+  args: {
+    isFullPage: false
+  }
 } as Meta
 
 export const Default: Story<LoadingProps> = args => <Loading {...args} />
-
-Default.args = {
-  isFullPage: false
-}

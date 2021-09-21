@@ -1,14 +1,14 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
 
+import mockOptions from 'mock/options'
+
 import CharacterAutocomplete, { CharacterAutocompleteProps } from '.'
-import mock from './mock'
 
 export default {
   title: 'Form/CharacterAutocomplete',
   component: CharacterAutocomplete,
   args: {
-    initialValue: '',
-    options: mock.options
+    options: mockOptions
   },
   argTypes: {
     handleChange: { action: 'characterAutocompleteChange' }

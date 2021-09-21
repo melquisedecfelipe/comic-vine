@@ -10,7 +10,6 @@ export default {
   args: {
     initialValue: '',
     icon: SearchIcon,
-    name: 'search',
     placeholder: 'Search here'
   },
   argTypes: {
