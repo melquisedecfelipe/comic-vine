@@ -18,6 +18,7 @@ const Character = ({
   birth,
   description,
   handleBack,
+  gender,
   images,
   name,
   origin,
@@ -56,6 +57,7 @@ const Character = ({
       <S.Content>
         <div>
           {birth && <small>Birth: {birth}</small>}
+          {gender && <small>Gender: {gender}</small>}
           {origin && <small>Origin: {origin}</small>}
           {publisher && <small>Publisher: {publisher}</small>}
         </div>
