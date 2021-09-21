@@ -6,6 +6,6 @@ describe('<Base />', () => {
   it('should render the base', () => {
     const { container } = render(<Base>Base component</Base>)
 
-    expect(container.firstChild).toMatchSnapshot
+    expect(container).toBeInTheDocument()
   })
 })
