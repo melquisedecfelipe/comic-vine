@@ -72,7 +72,7 @@ export default function Home() {
           <SearchForm
             handleChange={value => setFilterName(value)}
             handleClear={handleClear}
-            handleSubmit={event => handleSubmit(event, filterName)}
+            handleSubmit={() => handleSubmit(filterName)}
             optionsCharacterAutocomplete={optionsCharacterAutocomplete}
           />
 
