@@ -28,13 +28,4 @@ export const Default: Story<CardProps> = args => (
   </div>
 )
 
-Default.args = {
-  isFavorite: () => false
-}
-
 export const IsVertical: Story<CardProps> = args => <Card {...args} />
-
-IsVertical.args = {
-  isFavorite: () => true,
-  isVertical: true
-}
