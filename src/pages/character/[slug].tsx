@@ -10,7 +10,7 @@ export default function Index(props: CharacterProps) {
 
   if (router.isFallback) return null
 
-  return <Character {...props} />
+  return <Character {...props} handleBack={() => router.back()} />
 }
 
 export async function getStaticPaths() {

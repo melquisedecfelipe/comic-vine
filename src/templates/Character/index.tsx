@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Router from 'next/router'
 
 import Button from 'components/Button'
 import TextContent from 'components/TextContent'
@@ -11,12 +10,14 @@ import { CharacterDetail } from 'types/characters'
 import Base from '../Base'
 
 export type CharacterProps = {
+  handleBack: () => void
   slug?: string
 } & CharacterDetail
 
 const Character = ({
   birth,
   description,
+  handleBack,
   images,
   name,
   origin,
@@ -27,7 +28,7 @@ const Character = ({
   <Base>
     <S.Wrapper>
       <S.Actions>
-        <Button variant="outlined" onClick={() => Router.back()}>
+        <Button variant="outlined" onClick={handleBack}>
           Go back
         </Button>
 
