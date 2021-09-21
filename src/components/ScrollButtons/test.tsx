@@ -16,7 +16,7 @@ describe('<ScrollButtons />', () => {
   it('should render the scroll buttons', () => {
     const { container } = render(<ScrollButtons {...props} />)
 
-    expect(container.firstChild).toMatchSnapshot
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should click on down button', () => {
