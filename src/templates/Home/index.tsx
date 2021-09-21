@@ -2,13 +2,13 @@ import { useRouter } from 'next/router'
 
 import React, { useCallback, useMemo, useState } from 'react'
 
-import Button from 'components/Button'
 import Card from 'components/Card'
 import { OptionProps } from 'components/CharacterAutocomplete'
 import mockCharacterAutocomplete from 'components/CharacterAutocomplete/mock'
 import Empty from 'components/Empty'
-import { Grid } from 'components/Grid'
+import { Grid, GridVertical } from 'components/Grid'
 import Loading from 'components/Loading'
+import Paginate from 'components/Paginate'
 import SearchForm from 'components/SearchForm'
 
 import { useCharacters } from 'hooks/useCharacters'
@@ -24,9 +24,13 @@ type OptionValueProps = string | OptionProps | null
 export default function Home() {
   const {
     data,
+    favorites,
     filter,
+    handleAddFavorite,
     handlePage,
+    handleRemoveFavorite,
     handleSubmit,
+    isFavorite,
     isFetching,
     isLoading,
     setName,
@@ -77,15 +81,13 @@ export default function Home() {
         <S.Wrapper>
           {isFetching && <Loading isFullPage />}
 
-          <S.SearchFormWrapper>
-            <SearchForm
-              handleChange={handleChange}
-              handleClear={handleClear}
-              handleSubmit={event => handleSubmit(event, filterName)}
-              initialValue={filterName}
-              optionsCharacterAutocomplete={optionsCharacterAutocomplete}
-            />
-          </S.SearchFormWrapper>
+          <SearchForm
+            handleChange={handleChange}
+            handleClear={handleClear}
+            handleSubmit={event => handleSubmit(event, filterName)}
+            initialValue={filterName}
+            optionsCharacterAutocomplete={optionsCharacterAutocomplete}
+          />
 
           <S.Text>
             Page: <strong>{filter.page || 1}</strong> | Total pages:{' '}
@@ -101,42 +103,45 @@ export default function Home() {
 
           {data === undefined || (data.length === 0 && <Empty />)}
 
+          {favorites.length > 0 && filter.name === '' && (
+            <S.FavoritesWrapper>
+              <h3>Favorites</h3>
+
+              <GridVertical>
+                {favorites.map((character: Character) => (
+                  <Card
+                    key={character.id}
+                    character={character}
+                    handleAddFavorite={handleAddFavorite}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                    isFavorite={isFavorite}
+                    isVertical
+                  />
+                ))}
+              </GridVertical>
+            </S.FavoritesWrapper>
+          )}
+
           {data && data.length > 0 && (
             <>
               <Grid>
                 {data.map((character: Character) => (
                   <Card
                     key={character.id}
-                    aliases={character.aliases}
-                    birth={character.birth}
-                    deck={character.deck}
-                    href={character.slug}
-                    image={character.images.small}
-                    name={character.name}
+                    character={character}
+                    handleAddFavorite={handleAddFavorite}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                    isFavorite={isFavorite}
                   />
                 ))}
               </Grid>
 
               {totalPages && totalPages > 1 && (
-                <S.ButtonWrapper>
-                  <Button
-                    disabled={filter.page === 1}
-                    onClick={() => handlePage('PREVIOUS')}
-                    variant="outlined"
-                    type="button"
-                  >
-                    Previous
-                  </Button>
-
-                  <Button
-                    disabled={filter.page === totalPages}
-                    onClick={() => handlePage('NEXT')}
-                    type="button"
-                    variant="filled"
-                  >
-                    Next
-                  </Button>
-                </S.ButtonWrapper>
+                <Paginate
+                  handlePage={handlePage}
+                  page={filter.page}
+                  totalPages={totalPages}
+                />
               )}
             </>
           )}
