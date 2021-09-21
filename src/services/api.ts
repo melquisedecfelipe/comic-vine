@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { CharactersResponse } from 'types/characters'
+import { CharacterResponse, CharactersResponse } from 'types/characters'
 
 const api = axios.create({
   baseURL: 'http://localhost:3000/api/'
@@ -25,7 +25,7 @@ export const getCharacters = async ({
 }
 
 export const getCharacter = async (id: string) => {
-  const { data } = await api.get<CharactersResponse>(`characters/${id}`)
+  const { data } = await api.get<CharacterResponse>(`characters/${id}`)
 
   return data
 }
