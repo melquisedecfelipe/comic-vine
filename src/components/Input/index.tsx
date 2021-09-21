@@ -24,8 +24,8 @@ const Input = ({
   const [value, setValue] = useState(initialValue)
 
   const onChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.currentTarget.value
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = event.currentTarget.value
       setValue(newValue)
 
       !!handleChange && handleChange(newValue)

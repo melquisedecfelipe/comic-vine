@@ -1,8 +1,12 @@
+import { act } from 'react-dom/test-utils'
+
 import { Search as SearchIcon } from '@styled-icons/boxicons-regular/Search'
 
 import { fireEvent, render, screen } from 'utils/testUtils'
 
 import Input from '.'
+
+const handleChange = jest.fn()
 
 describe('<Input />', () => {
   it('should render the input', () => {
@@ -31,5 +35,27 @@ describe('<Input />', () => {
     expect(input.parentElement).toHaveStyle({
       border: '1px solid #000000'
     })
+  })
+
+  it('should render the input styles as blur', () => {
+    render(<Input placeholder="Input component" icon={SearchIcon} />)
+
+    const input = screen.getByPlaceholderText('Input component')
+
+    fireEvent.blur(input)
+
+    expect(input.parentElement).toHaveStyle({
+      border: '1px solid #707372'
+    })
+  })
+
+  it('should handle change input value', () => {
+    render(<Input placeholder="Input component" icon={SearchIcon} />)
+
+    const input = screen.getByPlaceholderText('Input component')
+
+    fireEvent.change(input, { target: { value: 'Hello' } })
+
+    expect(input.value).toBe('Hello')
   })
 })
