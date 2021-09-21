@@ -11,6 +11,7 @@ describe('characterMapper()', () => {
       birth: null,
       deck: 'Tony Stark was the arrogant son of wealthy, weapon manufacturer Howard Stark.',
       description: `<p>Anthony Edward "Tony" Stark was born in <a href="../../long-island/34-55811/" rel="nofollow ">Long Island</a>, <a href="../../new-york-city/34-41183/" rel="nofollow ">New York</a>, to <a href="../../howard-stark/29-48549/" rel="nofollow ">Howard Anthony Stark</a> and Maria Collins Carbonell Stark. In his youth, Tony Stark was a precociously intelligent young boy. When Tony was 7 he was sent to a boarding school, and during this experience he found people difficult to relate to. This was when he became fascinated by machines. By the age of 15 Tony had enrolled in MIT (The Massachusetts Institute of Technology) in <a href="../../boston-massachusetts/34-56311/" rel="nofollow ">Boston, Massachusetts</a>. He graduated at the top of his class at age 19 with double masters in physics and engineering.</p>`,
+      gender: 1,
       id: 1455,
       image: {
         icon_url:
@@ -38,6 +39,7 @@ describe('characterMapper()', () => {
       birth: null,
       deck: 'Tony Stark was the arrogant son of wealthy, weapon manufacturer Howard Stark.',
       description: `<p>Anthony Edward "Tony" Stark was born in <a href="../../long-island/34-55811/" rel="nofollow ">Long Island</a>, <a href="../../new-york-city/34-41183/" rel="nofollow ">New York</a>, to <a href="../../howard-stark/29-48549/" rel="nofollow ">Howard Anthony Stark</a> and Maria Collins Carbonell Stark. In his youth, Tony Stark was a precociously intelligent young boy. When Tony was 7 he was sent to a boarding school, and during this experience he found people difficult to relate to. This was when he became fascinated by machines. By the age of 15 Tony had enrolled in MIT (The Massachusetts Institute of Technology) in <a href="../../boston-massachusetts/34-56311/" rel="nofollow ">Boston, Massachusetts</a>. He graduated at the top of his class at age 19 with double masters in physics and engineering.</p>`,
+      gender: 'Male',
       id: 1455,
       images: {
         icon: 'https://comicvine.gamespot.com/a/uploads/square_avatar/11138/111389575/7768211-4293283244-2Pac8Gpu6dUAUMI0UpVJeqk9rayKSiaTjreIK0H-ChAWsoNV-RxTnTEt4a7tCNryrbLjFPndaoNki-tJJI1Q-_mi8fue_juP4cBRHx0Er1w5EfjNoWwadqewG3JSwaliSSsHnNEN%3Ds1600.jpg',
@@ -64,6 +66,7 @@ describe('charactersMapper()', () => {
       birth: null,
       deck: "T'Challa is the Black Panther, king of Wakanda, one of the most technologically advanced nations on Earth. He is among the top intellects and martial artists of the world, a veteran Avenger, and a member of the Illuminati. Using his powers and abilities, he has pledged his fortune, powers, and life to the service of all mankind.",
       description: `<p>Long ago, a huge meteorite made of a rare mineral now known as <a href="https://www.comicvine.com/vibranium/18-40919/">vibranium</a>, crashed landed in <a href="https://www.comicvine.com/wakanda/34-41027/">Wakanda</a>. The first king of Wakanda, Black Panther Bashenga, harnessed the mineral and used it to nurture his nation. Thousands of years later, under the ruling of Black Panther <a href="//www.comicvine.com/tchaka/4005-62659/" data-ref-id="4005-62659">T‘Chaka</a>, Wakanda's level of technological and economic achievements continued to excel far beyond those of the modern world.</p>`,
+      gender: 1,
       id: 1477,
       image: {
         icon_url:
@@ -85,6 +88,7 @@ describe('charactersMapper()', () => {
         birth: null,
         deck: "T'Challa is the Black Panther, king of Wakanda, one of the most technologically advanced nations on Earth. He is among the top intellects and martial artists of the world, a veteran Avenger, and a member of the Illuminati. Using his powers and abilities, he has pledged his fortune, powers, and life to the service of all mankind.",
         description: `<p>Long ago, a huge meteorite made of a rare mineral now known as <a href="https://www.comicvine.com/vibranium/18-40919/">vibranium</a>, crashed landed in <a href="https://www.comicvine.com/wakanda/34-41027/">Wakanda</a>. The first king of Wakanda, Black Panther Bashenga, harnessed the mineral and used it to nurture his nation. Thousands of years later, under the ruling of Black Panther <a href="//www.comicvine.com/tchaka/4005-62659/" data-ref-id="4005-62659">T‘Chaka</a>, Wakanda's level of technological and economic achievements continued to excel far beyond those of the modern world.</p>`,
+        gender: 'Male',
         id: 1477,
         images: {
           icon: 'https://comicvine.gamespot.com/a/uploads/square_avatar/3/31666/5011137-blap2016001-cov-d6d2a.jpg',

@@ -4,6 +4,7 @@ export type BBFCharacter = {
   birth: string | null
   deck: string | null
   description: string
+  gender: 0 | 1 | 2
   id: number
   image: {
     icon_url: string
@@ -38,6 +39,7 @@ export type Character = {
   birth: string | null
   deck: string | null
   description: string
+  gender: 'Female' | 'Male' | 'Unknown'
   id: number
   images: {
     icon: string
