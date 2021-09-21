@@ -8,7 +8,8 @@ export default {
   argTypes: {
     children: {
       type: 'string'
-    }
+    },
+    onClick: { action: 'buttonClick' }
   }
 } as Meta
 
@@ -23,6 +24,9 @@ export const asLink: Story = args => <Button {...args} />
 asLink.args = {
   variant: 'outlined',
   children: 'Link Component',
-  as: 'a',
-  href: '/link'
+  as: 'a'
+}
+
+asLink.argTypes = {
+  onClick: { action: 'linkClick' }
 }
