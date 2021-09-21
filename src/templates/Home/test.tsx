@@ -15,6 +15,6 @@ describe('<Home />', () => {
   it('should render the home', () => {
     const { container } = render(<Home />)
 
-    expect(container.firstChild).toMatchSnapshot
+    expect(container).toBeInTheDocument()
   })
 })

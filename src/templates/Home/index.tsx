@@ -11,7 +11,8 @@ import Loading from 'components/Loading'
 import Paginate from 'components/Paginate'
 import SearchForm from 'components/SearchForm'
 
-import { useCharacters } from 'hooks/useCharacters'
+import { useCharacter } from 'hooks/useCharacter'
+import { useFavorite } from 'hooks/useFavorite'
 
 import * as S from './styles'
 
@@ -24,19 +25,17 @@ type OptionValueProps = string | OptionProps | null
 export default function Home() {
   const {
     data,
-    favorites,
     filter,
-    handleAddFavorite,
     handlePage,
-    handleRemoveFavorite,
     handleSubmit,
-    isFavorite,
     isFetching,
     isLoading,
     setName,
     totalItems,
     totalPages
-  } = useCharacters()
+  } = useCharacter()
+
+  const { favorites } = useFavorite()
 
   const { push } = useRouter()
 
@@ -109,14 +108,7 @@ export default function Home() {
 
               <GridVertical>
                 {favorites.map((character: Character) => (
-                  <Card
-                    key={character.id}
-                    character={character}
-                    handleAddFavorite={handleAddFavorite}
-                    handleRemoveFavorite={handleRemoveFavorite}
-                    isFavorite={isFavorite}
-                    isVertical
-                  />
+                  <Card key={character.id} character={character} isVertical />
                 ))}
               </GridVertical>
             </S.FavoritesWrapper>
@@ -126,13 +118,7 @@ export default function Home() {
             <>
               <Grid>
                 {data.map((character: Character) => (
-                  <Card
-                    key={character.id}
-                    character={character}
-                    handleAddFavorite={handleAddFavorite}
-                    handleRemoveFavorite={handleRemoveFavorite}
-                    isFavorite={isFavorite}
-                  />
+                  <Card key={character.id} character={character} />
                 ))}
               </Grid>
 
