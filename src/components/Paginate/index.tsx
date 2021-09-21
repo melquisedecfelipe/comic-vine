@@ -1,6 +1,6 @@
 import Button from 'components/Button'
 
-import { TypeProps } from 'hooks/useCharacters'
+import { TypeProps } from 'hooks/useCharacter'
 
 import * as S from './styles'
 
