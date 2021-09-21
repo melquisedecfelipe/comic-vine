@@ -6,13 +6,17 @@ import mock from './mock'
 export default {
   title: 'Card',
   component: Card,
-  args: mock,
+  args: { ...mock },
+  argTypes: {
+    handleAddFavorite: { action: 'addFavorite' },
+    handleRemoveFavorite: { action: 'removeFavorite' }
+  },
   parameters: {
     nextRouter: {
       path: '/character/[slug]',
-      asPath: `/character/${mock.href}`,
+      asPath: `/character/${mock.character.slug}`,
       query: {
-        slug: mock.href
+        slug: mock.character.slug
       }
     }
   }
@@ -23,3 +27,14 @@ export const Default: Story<CardProps> = args => (
     <Card {...args} />
   </div>
 )
+
+Default.args = {
+  isFavorite: () => false
+}
+
+export const IsVertical: Story<CardProps> = args => <Card {...args} />
+
+IsVertical.args = {
+  isFavorite: () => true,
+  isVertical: true
+}

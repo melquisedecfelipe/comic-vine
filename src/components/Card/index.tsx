@@ -1,46 +1,67 @@
 import { useRouter } from 'next/dist/client/router'
 import Image from 'next/image'
 
+import { Heart as HeartIcon } from '@styled-icons/boxicons-regular/Heart'
+import { Heart as HeartFillIcon } from '@styled-icons/boxicons-solid/Heart'
+
+import Button from 'components/Button'
+
 import * as S from './styles'
 
+import { Character } from 'types/characters'
+
 export type CardProps = {
-  aliases: string | null
-  birth: string | null
-  deck: string | null
-  image: string
-  href: string
-  name: string
+  character: Character
+  handleAddFavorite: (character: Character) => void
+  handleRemoveFavorite: (id: number) => void
+  isFavorite: (id: number) => boolean
+  isVertical?: boolean
 }
 
-const Card = ({ aliases, birth, deck, image, href, name }: CardProps) => {
+const Card = ({
+  character,
+  handleAddFavorite,
+  handleRemoveFavorite,
+  isFavorite,
+  isVertical = false
+}: CardProps) => {
   const { push } = useRouter()
 
   return (
-    <S.Wrapper
-      aria-label="Character"
-      role="link"
-      onClick={() => push(`character/${href}`)}
-    >
-      <S.Aside>
+    <S.Wrapper $isVertical={isVertical}>
+      <S.ImageWrapper>
         <Image
-          alt={name}
-          src={image}
+          alt={character.name}
+          src={character.images.small}
           width={175}
           height={250}
           layout="responsive"
           objectFit="cover"
         />
-      </S.Aside>
 
-      <S.Section>
+        {isFavorite(character.id) ? (
+          <Button onClick={() => handleRemoveFavorite(character.id)}>
+            <HeartFillIcon />
+          </Button>
+        ) : (
+          <Button onClick={() => handleAddFavorite(character)}>
+            <HeartIcon />
+          </Button>
+        )}
+      </S.ImageWrapper>
+
+      <S.Section
+        aria-label="Character"
+        role="link"
+        onClick={() => push(`character/${character.slug}`)}
+      >
         <span>
-          {birth && <small>{birth}</small>}
-          <h3>{name}</h3>
+          {!isVertical && character.birth && <small>{character.birth}</small>}
+          <h3>{character.name}</h3>
         </span>
 
-        {deck && <p>{deck}</p>}
-
-        <small>Aliases: {aliases}</small>
+        {!isVertical && character.deck && <p>{character.deck}</p>}
+        {!isVertical && <small>Aliases: {character.aliases}</small>}
       </S.Section>
     </S.Wrapper>
   )
