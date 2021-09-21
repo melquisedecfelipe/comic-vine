@@ -20,8 +20,6 @@ import { Character } from 'types/characters'
 
 import Base from '../Base'
 
-type OptionValueProps = string | OptionProps | null
-
 export default function Home() {
   const {
     data,
@@ -41,21 +39,12 @@ export default function Home() {
 
   const [filterName, setFilterName] = useState(filter.name)
 
-  const handleChange = useCallback((value: OptionValueProps) => {
-    if (value && typeof value === 'object') {
-      return setFilterName(value?.title)
-    }
-
-    setFilterName(value || '')
-  }, [])
-
   const handleClear = useCallback(() => {
-    setFilterName('')
     setName('')
 
     push({
       pathname: '/',
-      query: { name: '', page: 1 }
+      query: { page: 1 }
     })
   }, [setName, push])
 
@@ -81,10 +70,9 @@ export default function Home() {
           {isFetching && <Loading isFullPage />}
 
           <SearchForm
-            handleChange={handleChange}
+            handleChange={value => setFilterName(value)}
             handleClear={handleClear}
             handleSubmit={event => handleSubmit(event, filterName)}
-            initialValue={filterName}
             optionsCharacterAutocomplete={optionsCharacterAutocomplete}
           />
 
