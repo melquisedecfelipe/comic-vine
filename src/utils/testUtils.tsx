@@ -5,29 +5,38 @@ import { render, RenderOptions } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 
 import {
-  CharactersContext,
-  CharactersContextData,
-  CharactersContextDefaultValues
-} from 'hooks/useCharacters'
+  CharacterContext,
+  CharacterContextData,
+  CharacterContextDefaultValues
+} from 'hooks/useCharacter'
+import {
+  FavoriteContext,
+  FavoriteContextData,
+  FavoriteContextDefaultValues
+} from 'hooks/useFavorite'
 
 import theme from 'styles/theme'
 
 type CustomRenderProps = {
-  charactersProviderProps?: CharactersContextData
+  characterProviderProps?: CharacterContextData
+  favoriteProviderProps?: FavoriteContextData
 } & Omit<RenderOptions, 'queries'>
 
 const customRender = (
   ui: ReactElement,
   {
-    charactersProviderProps = CharactersContextDefaultValues,
+    characterProviderProps = CharacterContextDefaultValues,
+    favoriteProviderProps = FavoriteContextDefaultValues,
     ...renderOptions
   }: CustomRenderProps = {}
 ) =>
   render(
     <ThemeProvider theme={theme}>
-      <CharactersContext.Provider value={charactersProviderProps}>
-        {ui}
-      </CharactersContext.Provider>
+      <CharacterContext.Provider value={characterProviderProps}>
+        <FavoriteContext.Provider value={favoriteProviderProps}>
+          {ui}
+        </FavoriteContext.Provider>
+      </CharacterContext.Provider>
     </ThemeProvider>,
     renderOptions
   )
