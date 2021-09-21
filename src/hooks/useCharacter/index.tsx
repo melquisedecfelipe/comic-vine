@@ -27,7 +27,7 @@ export type CharacterContextData = {
   data?: Character[]
   filter: FilterProps
   handlePage: (type: TypeProps) => void
-  handleSubmit: (event: React.FormEvent, value: string) => void
+  handleSubmit: (value?: string) => void
   isFetching: boolean
   isLoading: boolean
   setName: (value: string) => void
@@ -92,9 +92,7 @@ const CharacterProvider = ({ children }: CharacterProviderProps) => {
   )
 
   const handleSubmit = useCallback(
-    (event: React.FormEvent, value) => {
-      event.preventDefault()
-
+    value => {
       push({
         pathname: '/',
         query: { name: value, page: 1 }
