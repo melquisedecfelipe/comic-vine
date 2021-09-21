@@ -2,11 +2,6 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    margin-top: ${theme.spacings.small};
-    background: ${theme.colors.white};
-    color: ${theme.colors.black};
     overflow: hidden;
 
     h1,
