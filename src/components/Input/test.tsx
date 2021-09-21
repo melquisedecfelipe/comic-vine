@@ -48,7 +48,9 @@ describe('<Input />', () => {
   it('should handle change input value', () => {
     render(<Input placeholder="Input component" icon={SearchIcon} />)
 
-    const input = screen.getByPlaceholderText('Input component')
+    const input = screen.getByPlaceholderText(
+      'Input component'
+    ) as HTMLInputElement
 
     fireEvent.change(input, { target: { value: 'Hello' } })
 
