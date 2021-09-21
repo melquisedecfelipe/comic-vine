@@ -1,7 +1,8 @@
 import { render } from 'utils/testUtils'
 
-import TextContent from '.'
 import mock from './mock'
+
+import TextContent from '.'
 
 describe('<TextContent />', () => {
   it('should render the text content', () => {

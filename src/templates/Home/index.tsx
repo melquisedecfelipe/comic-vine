@@ -4,7 +4,6 @@ import React, { useCallback, useMemo, useState } from 'react'
 
 import Card from 'components/Card'
 import { OptionProps } from 'components/CharacterAutocomplete'
-import mockCharacterAutocomplete from 'components/CharacterAutocomplete/mock'
 import Empty from 'components/Empty'
 import { Grid, GridVertical } from 'components/Grid'
 import Loading from 'components/Loading'
@@ -17,6 +16,8 @@ import { useFavorite } from 'hooks/useFavorite'
 import * as S from './styles'
 
 import { Character } from 'types/characters'
+
+import mockOptions from 'mock/options'
 
 import Base from '../Base'
 
@@ -56,7 +57,7 @@ export default function Home() {
       }))
     }
 
-    return mockCharacterAutocomplete.options
+    return mockOptions
   }, [data])
 
   return (

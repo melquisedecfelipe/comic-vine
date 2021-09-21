@@ -6,11 +6,7 @@ import { Container } from '.'
 
 describe('<Container />', () => {
   it('should render the heading', () => {
-    const { container } = render(
-      <Container>
-        <span>Won Games</span>
-      </Container>
-    )
+    const { container } = render(<Container>Container component</Container>)
 
     expect(container.firstChild).toHaveStyleRule(
       'max-width',
@@ -29,9 +25,7 @@ describe('<Container />', () => {
 <div
   class="c0"
 >
-  <span>
-    Won Games
-  </span>
+  Container component
 </div>
 `)
   })

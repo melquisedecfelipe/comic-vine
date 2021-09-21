@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event'
 
-import mock from 'components/CharacterAutocomplete/mock'
-
 import { render, screen } from 'utils/testUtils'
 
-import SearchForm from '.'
+import mockOptions from 'mock/options'
+
+import SearchForm, { SearchFormProps } from '.'
 
 const handleChange = jest.fn()
 const handleClear = jest.fn()
@@ -14,9 +14,8 @@ const props = {
   handleChange,
   handleClear,
   handleSubmit,
-  initialValue: '',
-  optionsCharacterAutocomplete: mock.options
-}
+  optionsCharacterAutocomplete: mockOptions
+} as SearchFormProps
 
 describe('<SearchForm />', () => {
   it('should render the search form', () => {

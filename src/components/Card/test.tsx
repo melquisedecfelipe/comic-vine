@@ -2,27 +2,34 @@ import userEvent from '@testing-library/user-event'
 
 import { render, screen } from 'utils/testUtils'
 
-import Card from '.'
-import mock from './mock'
+import mockCharacter from 'mock/character'
+
+import Card, { CardProps } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 const push = jest.fn()
 
-useRouter.mockImplementation(() => ({
-  push
-}))
+const props = {
+  character: mockCharacter
+} as CardProps
 
 describe('<Card />', () => {
+  beforeEach(() => {
+    useRouter.mockImplementation(() => ({
+      push
+    }))
+  })
+
   it('should render the card', () => {
-    const { container } = render(<Card {...mock} />)
+    const { container } = render(<Card {...props} />)
 
     expect(container).toMatchSnapshot()
   })
 
   it('should render the card vertical', () => {
-    render(<Card {...mock} isVertical />)
+    render(<Card character={mockCharacter} isVertical />)
 
     expect(
       screen.getByRole('link', { name: /character/i }).parentElement
@@ -33,7 +40,7 @@ describe('<Card />', () => {
   })
 
   it('should redirect on card click', () => {
-    render(<Card {...mock} />)
+    render(<Card {...props} />)
 
     userEvent.click(screen.getByRole('link', { name: /character/i }))
 

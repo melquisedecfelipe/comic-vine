@@ -1,9 +1,9 @@
 import { CharacterContextDefaultValues } from 'hooks/useCharacter'
-import mockCharacter from 'hooks/useCharacter/mock'
 import { FavoriteContextDefaultValues } from 'hooks/useFavorite'
-import mockFavorite from 'hooks/useFavorite/mock'
 
 import { render, screen } from 'utils/testUtils'
+
+import mockCharacters from 'mock/characters'
 
 import Home from '.'
 
@@ -12,11 +12,13 @@ const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 const push = jest.fn()
 
-useRouter.mockImplementation(() => ({
-  push
-}))
-
 describe('<Home />', () => {
+  beforeEach(() => {
+    useRouter.mockImplementation(() => ({
+      push
+    }))
+  })
+
   it('should render the home', () => {
     const { container } = render(<Home />)
 
@@ -61,15 +63,15 @@ describe('<Home />', () => {
   it('should render the favorites chracters', () => {
     const characterProviderProps = {
       ...CharacterContextDefaultValues,
-      data: mockCharacter.data,
+      data: mockCharacters,
       filter: { limit: 10, name: '', page: 1 },
-      totalItems: mockCharacter.data.length,
+      totalItems: mockCharacters.length,
       totalPages: 1
     }
 
     const favoriteProviderProps = {
       ...FavoriteContextDefaultValues,
-      favorites: mockFavorite
+      favorites: mockCharacters
     }
 
     render(<Home />, { characterProviderProps, favoriteProviderProps })
@@ -80,15 +82,15 @@ describe('<Home />', () => {
   it('should render the paginate component', () => {
     const characterProviderProps = {
       ...CharacterContextDefaultValues,
-      data: mockCharacter.data,
+      data: mockCharacters,
       filter: { limit: 10, name: '', page: 1 },
-      totalItems: mockCharacter.data.length,
+      totalItems: mockCharacters.length,
       totalPages: 2
     }
 
     const favoriteProviderProps = {
       ...FavoriteContextDefaultValues,
-      favorites: mockFavorite
+      favorites: mockCharacters
     }
 
     render(<Home />, { characterProviderProps, favoriteProviderProps })

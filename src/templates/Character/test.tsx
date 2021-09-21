@@ -2,30 +2,30 @@ import userEvent from '@testing-library/user-event'
 
 import { render, screen } from 'utils/testUtils'
 
-import Character from '.'
-import mock from './mock'
+import mockCharacterDetail from 'mock/characterDetail'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+import Character, { CharacterProps } from '.'
 
-const back = jest.fn()
+const handleBack = jest.fn()
 
-useRouter.mockImplementation(() => ({
-  back
-}))
+const props = {
+  character: mockCharacterDetail,
+  handleBack,
+  slug: '1443-spider-man'
+} as CharacterProps
 
 describe('<Character />', () => {
   it('should render the home', () => {
-    const { container } = render(<Character {...mock} />)
+    const { container } = render(<Character {...props} />)
 
     expect(container).toBeInTheDocument()
   })
 
   it('should back page in button click', () => {
-    render(<Character {...mock} handleBack={back} />)
+    render(<Character {...props} />)
 
     userEvent.click(screen.getByRole('button', { name: /go back/i }))
 
-    expect(back).toHaveBeenCalledTimes(1)
+    expect(handleBack).toHaveBeenCalledTimes(1)
   })
 })

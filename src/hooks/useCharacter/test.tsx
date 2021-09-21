@@ -3,8 +3,9 @@ import { act } from 'react-dom/test-utils'
 
 import { renderHook } from '@testing-library/react-hooks'
 
+import mockCharacters from 'mock/characters'
+
 import { CharacterProvider, CharacterProviderProps, useCharacter } from '.'
-import mock from './mock'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
@@ -13,24 +14,7 @@ const useQuery = jest.spyOn(require('react-query'), 'useQuery')
 
 const push = jest.fn()
 
-useRouter.mockImplementation(() => ({
-  push,
-  query: { name: '', page: 1 }
-}))
-
 const queryClient = new QueryClient()
-
-useQuery.mockImplementation(() => ({
-  data: {
-    limit: 10,
-    offset: 0,
-    results: mock.data,
-    total: mock.data.length,
-    totalPages: 1
-  },
-  isFetching: false,
-  isLoading: false
-}))
 
 const wrapper = ({ children }: CharacterProviderProps) => (
   <QueryClientProvider client={queryClient}>
@@ -39,6 +23,25 @@ const wrapper = ({ children }: CharacterProviderProps) => (
 )
 
 describe('useCharacter', () => {
+  beforeEach(() => {
+    useQuery.mockImplementation(() => ({
+      data: {
+        limit: 10,
+        offset: 0,
+        results: mockCharacters,
+        total: mockCharacters.length,
+        totalPages: 1
+      },
+      isFetching: false,
+      isLoading: false
+    }))
+
+    useRouter.mockImplementation(() => ({
+      push,
+      query: { name: '', page: 1 }
+    }))
+  })
+
   it('should render the use character', async () => {
     const { result } = renderHook(() => useCharacter(), {
       wrapper

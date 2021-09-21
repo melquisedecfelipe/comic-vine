@@ -1,17 +1,22 @@
 import { fireEvent, render, screen } from 'utils/testUtils'
 
-import CharacterAutocomplete from '.'
-import mock from './mock'
+import mockOptions from 'mock/options'
+
+import CharacterAutocomplete, { CharacterAutocompleteProps } from '.'
+
+const props = {
+  options: mockOptions
+} as CharacterAutocompleteProps
 
 describe('<CharacterAutocomplete />', () => {
   it('should render the character autocomplete', () => {
-    const { container } = render(<CharacterAutocomplete {...mock} />)
+    const { container } = render(<CharacterAutocomplete {...props} />)
 
     expect(container).toBeInTheDocument()
   })
 
   it('should render the autocomplete styles as not focus', () => {
-    render(<CharacterAutocomplete {...mock} />)
+    render(<CharacterAutocomplete {...props} />)
 
     const input = screen.getByPlaceholderText('Search character by name')
 
@@ -21,7 +26,7 @@ describe('<CharacterAutocomplete />', () => {
   })
 
   it('should render the autocomplete styles as focus', () => {
-    render(<CharacterAutocomplete {...mock} />)
+    render(<CharacterAutocomplete {...props} />)
 
     const input = screen.getByPlaceholderText('Search character by name')
 
@@ -33,7 +38,7 @@ describe('<CharacterAutocomplete />', () => {
   })
 
   it('should render the autocomplete list on as focus', () => {
-    render(<CharacterAutocomplete {...mock} />)
+    render(<CharacterAutocomplete {...props} />)
 
     const input = screen.getByPlaceholderText('Search character by name')
 
@@ -43,7 +48,7 @@ describe('<CharacterAutocomplete />', () => {
   })
 
   it('should render valu in autocomplete on click option', async () => {
-    render(<CharacterAutocomplete {...mock} />)
+    render(<CharacterAutocomplete {...props} />)
 
     const input = screen.getByPlaceholderText('Search character by name')
 

@@ -1,19 +1,23 @@
 import userEvent from '@testing-library/user-event'
 
-import mock from 'components/Card/mock'
-
 import { FavoriteContextDefaultValues } from 'hooks/useFavorite'
 
 import { render, screen } from 'utils/testUtils'
 
-import FavoriteButton from '.'
+import mockCharacter from 'mock/character'
+
+import FavoriteButton, { FavoriteButtonProps } from '.'
 
 const handleAddFavorite = jest.fn()
 const handleRemoveFavorite = jest.fn()
 
+const props = {
+  character: mockCharacter
+} as FavoriteButtonProps
+
 describe('<FavoriteButton />', () => {
   it('should render the favorite button', () => {
-    const { container } = render(<FavoriteButton {...mock} />)
+    const { container } = render(<FavoriteButton {...props} />)
 
     expect(container).toMatchSnapshot()
   })
@@ -24,7 +28,7 @@ describe('<FavoriteButton />', () => {
       isFavorite: () => false
     }
 
-    render(<FavoriteButton {...mock} />, { favoriteProviderProps })
+    render(<FavoriteButton {...props} />, { favoriteProviderProps })
 
     expect(
       screen.getByRole('button', { name: /add favorite/i })
@@ -37,7 +41,7 @@ describe('<FavoriteButton />', () => {
       isFavorite: () => true
     }
 
-    render(<FavoriteButton {...mock} />, { favoriteProviderProps })
+    render(<FavoriteButton {...props} />, { favoriteProviderProps })
 
     expect(
       screen.getByRole('button', { name: /remove favorite/i })
@@ -51,7 +55,7 @@ describe('<FavoriteButton />', () => {
       handleAddFavorite
     }
 
-    render(<FavoriteButton {...mock} />, { favoriteProviderProps })
+    render(<FavoriteButton {...props} />, { favoriteProviderProps })
 
     userEvent.click(screen.getByRole('button', { name: /add favorite/i }))
 
@@ -65,7 +69,7 @@ describe('<FavoriteButton />', () => {
       handleRemoveFavorite
     }
 
-    render(<FavoriteButton {...mock} />, { favoriteProviderProps })
+    render(<FavoriteButton {...props} />, { favoriteProviderProps })
 
     userEvent.click(screen.getByRole('button', { name: /remove favorite/i }))
 

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { act, renderHook } from '@testing-library/react-hooks'
 
+import mockCharacters from 'mock/characters'
+
 import { FavoriteProvider, FavoriteProviderProps, useFavorite } from '.'
-import mock from './mock'
 
 const wrapper = ({ children }: FavoriteProviderProps) => (
   <FavoriteProvider>{children}</FavoriteProvider>
@@ -27,10 +28,10 @@ describe('useFavorite', () => {
     })
 
     act(() => {
-      result.current.handleAddFavorite(mock[0])
+      result.current.handleAddFavorite(mockCharacters[0])
     })
 
-    expect(result.current.favorites).toStrictEqual([mock[0]])
+    expect(result.current.favorites).toStrictEqual([mockCharacters[0]])
   })
 
   it('should remove character in favorites', async () => {
@@ -39,20 +40,23 @@ describe('useFavorite', () => {
     })
 
     act(() => {
-      result.current.handleAddFavorite(mock[0])
+      result.current.handleAddFavorite(mockCharacters[0])
     })
 
     act(() => {
-      result.current.handleAddFavorite(mock[1])
+      result.current.handleAddFavorite(mockCharacters[1])
     })
 
-    expect(result.current.favorites).toStrictEqual([mock[0], mock[1]])
+    expect(result.current.favorites).toStrictEqual([
+      mockCharacters[0],
+      mockCharacters[1]
+    ])
 
     act(() => {
-      result.current.handleRemoveFavorite(mock[0].id)
+      result.current.handleRemoveFavorite(mockCharacters[0].id)
     })
 
-    expect(result.current.favorites).toStrictEqual([mock[1]])
+    expect(result.current.favorites).toStrictEqual([mockCharacters[1]])
   })
 
   it('should character is a favorite', async () => {
@@ -61,10 +65,10 @@ describe('useFavorite', () => {
     })
 
     act(() => {
-      result.current.handleAddFavorite(mock[0])
+      result.current.handleAddFavorite(mockCharacters[0])
     })
 
-    expect(result.current.isFavorite(mock[0].id)).toBe(true)
+    expect(result.current.isFavorite(mockCharacters[0].id)).toBe(true)
   })
 
   it('should character is not a favorite', async () => {
@@ -72,6 +76,6 @@ describe('useFavorite', () => {
       wrapper
     })
 
-    expect(result.current.isFavorite(mock[0].id)).toBe(false)
+    expect(result.current.isFavorite(mockCharacters[0].id)).toBe(false)
   })
 })

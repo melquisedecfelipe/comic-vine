@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event'
 
 import { render, screen } from 'utils/testUtils'
 
-import ScrollButtons from '.'
+import ScrollButtons, { ScrollButtonsProps } from '.'
 
 const handleDown = jest.fn()
 const handleUp = jest.fn()
@@ -10,7 +10,7 @@ const handleUp = jest.fn()
 const props = {
   handleDown,
   handleUp
-}
+} as ScrollButtonsProps
 
 describe('<ScrollButtons />', () => {
   it('should render the scroll buttons', () => {
