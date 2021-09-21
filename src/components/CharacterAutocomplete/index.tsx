@@ -26,15 +26,12 @@ const CharacterAutocomplete = ({
   const [, setValue] = useState(initialValue)
 
   const onChange = useCallback(
-    (newValue: string | OptionProps | null) => {
-      const value =
-        newValue && typeof newValue === 'object'
-          ? newValue?.title
-          : newValue || ''
+    (value: string | OptionProps) => {
+      const newValue = typeof value === 'object' ? value?.title : value
 
-      setValue(value)
+      setValue(newValue)
 
-      !!handleChange && handleChange(value)
+      !!handleChange && handleChange(newValue)
     },
     [handleChange]
   )
