@@ -49,6 +49,11 @@ export const Wrapper = styled.button<WrapperProps>`
       opacity: 0.75;
     }
 
+    > svg {
+      height: 20px;
+      width: 20px;
+    }
+
     ${!!variant && wrapperModifiers[variant](theme)};
     ${disabled && wrapperModifiers.disabled(theme)};
   `}

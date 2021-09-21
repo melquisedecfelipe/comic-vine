@@ -34,6 +34,11 @@ exports[`<Button /> should render the filled style by default 1`] = `
   opacity: 0.75;
 }
 
+.c0 > svg {
+  height: 20px;
+  width: 20px;
+}
+
 <button
   class="c0"
 >
