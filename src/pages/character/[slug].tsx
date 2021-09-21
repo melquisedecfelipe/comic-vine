@@ -14,7 +14,7 @@ export default function Index(props: CharacterProps) {
 }
 
 export async function getStaticPaths() {
-  const response = await getCharacters(0)
+  const response = await getCharacters({ page: 0 })
 
   const paths = response?.results.map(({ slug }) => ({
     params: { slug }
