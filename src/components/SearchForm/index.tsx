@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 
 import Button from 'components/Button'
 import CharacterAutocomplete, {
@@ -10,7 +10,7 @@ import * as S from './styles'
 export type SearchFormProps = {
   handleChange: (value: string) => void
   handleClear: () => void
-  handleSubmit: (event: FormEvent) => void
+  handleSubmit: () => void
   optionsCharacterAutocomplete: OptionProps[]
 }
 
@@ -20,7 +20,12 @@ const SearchForm = ({
   handleSubmit,
   optionsCharacterAutocomplete
 }: SearchFormProps) => (
-  <S.Wrapper onSubmit={handleSubmit}>
+  <S.Wrapper
+    onSubmit={event => {
+      event.preventDefault()
+      handleSubmit()
+    }}
+  >
     <CharacterAutocomplete
       handleChange={handleChange}
       options={optionsCharacterAutocomplete}
