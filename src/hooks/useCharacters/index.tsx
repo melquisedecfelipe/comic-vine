@@ -11,7 +11,9 @@ import { useQuery } from 'react-query'
 
 import { getCharacters } from 'services/api'
 
-import { QUERY_CHARACTERS } from 'config/constants'
+import { getStorageItem, setStorageItem } from 'utils/localStorage'
+
+import { CHARACTERS_STORAGE, QUERY_CHARACTERS } from 'config/constants'
 
 import { Character } from 'types/characters'
 
@@ -21,13 +23,17 @@ type FilterProps = {
   page: number
 }
 
-type TypeProps = 'NEXT' | 'PREVIOUS'
+export type TypeProps = 'NEXT' | 'PREVIOUS'
 
 export type CharactersContextData = {
   data?: Character[]
+  favorites: Character[]
   filter: FilterProps
+  handleAddFavorite: (character: Character) => void
   handlePage: (type: TypeProps) => void
+  handleRemoveFavorite: (id: number) => void
   handleSubmit: (event: React.FormEvent, value: string) => void
+  isFavorite: (id: number) => boolean
   isFetching: boolean
   isLoading: boolean
   setName: (value: string) => void
@@ -37,12 +43,16 @@ export type CharactersContextData = {
 
 export const CharactersContextDefaultValues = {
   data: [],
+  favorites: [],
   filter: { limit: 10, name: '', page: 1 },
+  handleAddFavorite: () => null,
   handlePage: () => null,
+  handleRemoveFavorite: () => null,
   handleSubmit: () => null,
+  isFavorite: () => false,
   isFetching: false,
   isLoading: false,
-  setName: () => null,
+  setName: () => false,
   totalItems: 0,
   totalPages: 0
 } as CharactersContextData
@@ -57,6 +67,14 @@ export type CharactersProviderProps = {
 
 const CharactersProvider = ({ children }: CharactersProviderProps) => {
   const { push, query } = useRouter()
+
+  const [favorites, setFavorites] = useState<Character[]>(() => {
+    const favoritesStorage = getStorageItem(CHARACTERS_STORAGE)
+
+    if (favoritesStorage) return favoritesStorage
+
+    return []
+  })
 
   const [limit] = useState(50)
   const [name, setName] = useState('')
@@ -75,6 +93,13 @@ const CharactersProvider = ({ children }: CharactersProviderProps) => {
     }
   )
 
+  const handleAddFavorite = useCallback(
+    (character: Character) => {
+      handleSave([...favorites, character])
+    },
+    [favorites]
+  )
+
   const handlePage = useCallback(
     (type: 'NEXT' | 'PREVIOUS') => {
       const currentName = query.name as string
@@ -91,6 +116,21 @@ const CharactersProvider = ({ children }: CharactersProviderProps) => {
     [page, push, query.name, query.page]
   )
 
+  const handleRemoveFavorite = useCallback(
+    (id: number) => {
+      const newFavorites = favorites.filter(character => character.id !== id)
+
+      handleSave(newFavorites)
+    },
+    [favorites]
+  )
+
+  const handleSave = (characters: Character[]) => {
+    setFavorites(characters)
+
+    setStorageItem(CHARACTERS_STORAGE, characters)
+  }
+
   const handleSubmit = useCallback(
     (event: React.FormEvent, value) => {
       event.preventDefault()
@@ -101,6 +141,21 @@ const CharactersProvider = ({ children }: CharactersProviderProps) => {
       })
     },
     [push]
+  )
+
+  const isFavorite = useCallback(
+    (id: number) => {
+      if (id) {
+        const favoriteFilter = favorites.filter(
+          charactrer => charactrer.id === id
+        )
+
+        return !!favoriteFilter.length
+      }
+
+      return false
+    },
+    [favorites]
   )
 
   useEffect(() => {
@@ -123,9 +178,13 @@ const CharactersProvider = ({ children }: CharactersProviderProps) => {
     <CharactersContext.Provider
       value={{
         data: data?.results,
+        favorites,
         filter: { limit, name, page },
+        handleAddFavorite,
         handlePage,
+        handleRemoveFavorite,
         handleSubmit,
+        isFavorite,
         isFetching: isFetching,
         isLoading: isLoading,
         setName,
