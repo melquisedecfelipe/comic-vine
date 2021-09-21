@@ -8,10 +8,9 @@ import CharacterAutocomplete, {
 import * as S from './styles'
 
 export type SearchFormProps = {
-  handleChange: (value: string | OptionProps | null) => void
+  handleChange: (value: string) => void
   handleClear: () => void
   handleSubmit: (event: FormEvent) => void
-  initialValue: string
   optionsCharacterAutocomplete: OptionProps[]
 }
 
@@ -19,19 +18,17 @@ const SearchForm = ({
   handleChange,
   handleClear,
   handleSubmit,
-  initialValue,
   optionsCharacterAutocomplete
 }: SearchFormProps) => (
   <S.Wrapper onSubmit={handleSubmit}>
     <CharacterAutocomplete
       handleChange={handleChange}
-      initialValue={initialValue}
       options={optionsCharacterAutocomplete}
     />
 
     <Button>Search</Button>
 
-    <Button onClick={handleClear} variant="outlined">
+    <Button onClick={handleClear} variant="outlined" type="button">
       Clear
     </Button>
   </S.Wrapper>

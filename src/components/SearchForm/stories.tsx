@@ -6,7 +6,12 @@ import SearchForm, { SearchFormProps } from '.'
 
 export default {
   title: 'Form/SearchForm',
-  component: SearchForm
+  component: SearchForm,
+  argTypes: {
+    handleChange: { action: 'searchFormAutocompleteChange' },
+    handleClear: { action: 'searchFormClear' },
+    handleSubmit: { action: 'searchFormSubmit' }
+  }
 } as Meta
 
 export const Default: Story<SearchFormProps> = args => <SearchForm {...args} />
