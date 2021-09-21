@@ -61,15 +61,11 @@ const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
 
   const isFavorite = useCallback(
     (id: number) => {
-      if (id) {
-        const favoriteFilter = favorites.filter(
-          charactrer => charactrer.id === id
-        )
+      const favoriteFilter = favorites.filter(
+        charactrer => charactrer.id === id
+      )
 
-        return !!favoriteFilter.length
-      }
-
-      return false
+      return !!favoriteFilter.length
     },
     [favorites]
   )
