@@ -61,7 +61,8 @@ export const CharactersList = styled.ul`
     }
 
     &::-webkit-scrollbar {
-      width: 4px;
+      width: 5px;
+      height: 5px;
     }
 
     &::-webkit-scrollbar-track {

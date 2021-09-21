@@ -6,7 +6,13 @@ import mock from './mock'
 export default {
   title: 'Form/CharacterAutocomplete',
   component: CharacterAutocomplete,
-  args: mock
+  args: {
+    initialValue: '',
+    options: mock.options
+  },
+  argTypes: {
+    handleChange: { action: 'characterAutocompleteChange' }
+  }
 } as Meta
 
 export const Default: Story<CharacterAutocompleteProps> = args => (
