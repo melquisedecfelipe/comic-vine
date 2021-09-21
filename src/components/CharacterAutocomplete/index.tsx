@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import { useCallback, useState } from 'react'
+
 import useAutocomplete from '@material-ui/lab/useAutocomplete'
 import { Search as SearchIcon } from '@styled-icons/boxicons-regular/Search'
 
@@ -11,7 +13,7 @@ export type OptionProps = {
 }
 
 export type CharacterAutocompleteProps = {
-  handleChange?: (value: string | OptionProps | null) => void
+  handleChange?: (value: string) => void
   initialValue?: string
   options: OptionProps[]
 }
@@ -21,6 +23,22 @@ const CharacterAutocomplete = ({
   initialValue,
   options
 }: CharacterAutocompleteProps) => {
+  const [, setValue] = useState(initialValue)
+
+  const onChange = useCallback(
+    (newValue: string | OptionProps | null) => {
+      const value =
+        newValue && typeof newValue === 'object'
+          ? newValue?.title
+          : newValue || ''
+
+      setValue(value)
+
+      !!handleChange && handleChange(value)
+    },
+    [handleChange]
+  )
+
   const {
     focused,
     getInputLabelProps,
@@ -30,11 +48,12 @@ const CharacterAutocomplete = ({
     getRootProps,
     groupedOptions
   } = useAutocomplete({
+    disableClearable: true,
     freeSolo: true,
     getOptionLabel: option => option.title,
-    inputValue: initialValue,
-    onInputChange: (event, value) => !!handleChange && handleChange(value),
-    onChange: (event, value) => !!handleChange && handleChange(value),
+    handleHomeEndKeys: true,
+    onInputChange: (_, value) => onChange(value),
+    onChange: (_, value) => onChange(value),
     options,
     openOnFocus: true
   })
@@ -48,8 +67,8 @@ const CharacterAutocomplete = ({
 
         <input
           placeholder="Search character by name"
+          required
           {...getInputProps()}
-          value={initialValue}
         />
       </S.Group>
 
