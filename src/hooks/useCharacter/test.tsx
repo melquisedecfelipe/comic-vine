@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { renderHook } from '@testing-library/react-hooks'
 
-import { CharactersProvider, CharactersProviderProps, useCharacters } from '.'
+import { CharacterProvider, CharacterProviderProps, useCharacter } from '.'
 import mock from './mock'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -28,21 +28,17 @@ useQuery.mockImplementation(() => ({
   isLoading: false
 }))
 
-const queryClient = new QueryClient()
+describe('useCharacter', () => {
+  it('should render the use character', async () => {
+    const queryClient = new QueryClient()
 
-const wrapper = ({ children }: CharactersProviderProps) => (
-  <QueryClientProvider client={queryClient}>
-    <CharactersProvider>{children}</CharactersProvider>
-  </QueryClientProvider>
-)
+    const wrapper = ({ children }: CharacterProviderProps) => (
+      <QueryClientProvider client={queryClient}>
+        <CharacterProvider>{children}</CharacterProvider>
+      </QueryClientProvider>
+    )
 
-describe('useCharacters', () => {
-  beforeEach(() => {
-    window.localStorage.clear()
-  })
-
-  it('should render the use characters', async () => {
-    const { result } = renderHook(() => useCharacters(), {
+    const { result } = renderHook(() => useCharacter(), {
       wrapper
     })
 
