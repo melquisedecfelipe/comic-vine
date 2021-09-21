@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import { Character } from 'types/characters'
-
 import { FavoriteProvider, FavoriteProviderProps, useFavorite } from '.'
 import mock from './mock'
 
