@@ -8,3 +8,24 @@ export const Grid = styled.div`
     margin: ${theme.spacings.xlarge} 0;
   `}
 `
+
+export const GridVertical = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    gap: ${theme.spacings.medium};
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: ${theme.colors.white};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${theme.colors.black};
+    }
+  `}
+`
