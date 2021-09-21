@@ -1,12 +1,8 @@
-import { act } from 'react-dom/test-utils'
-
 import { Search as SearchIcon } from '@styled-icons/boxicons-regular/Search'
 
 import { fireEvent, render, screen } from 'utils/testUtils'
 
 import Input from '.'
-
-const handleChange = jest.fn()
 
 describe('<Input />', () => {
   it('should render the input', () => {
