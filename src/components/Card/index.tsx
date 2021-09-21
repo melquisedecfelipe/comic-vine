@@ -40,11 +40,17 @@ const Card = ({
         />
 
         {isFavorite(character.id) ? (
-          <Button onClick={() => handleRemoveFavorite(character.id)}>
+          <Button
+            aria-label="Remove Favorite"
+            onClick={() => handleRemoveFavorite(character.id)}
+          >
             <HeartFillIcon />
           </Button>
         ) : (
-          <Button onClick={() => handleAddFavorite(character)}>
+          <Button
+            aria-label="Add Favorite"
+            onClick={() => handleAddFavorite(character)}
+          >
             <HeartIcon />
           </Button>
         )}

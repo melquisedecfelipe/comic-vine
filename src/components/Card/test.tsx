@@ -8,10 +8,10 @@ import mock from './mock'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
-const push = jest.fn()
-const isFavorite = jest.fn()
+const isFavorite = () => false
 const handleAddFavorite = jest.fn()
 const handleRemoveFavorite = jest.fn()
+const push = jest.fn()
 
 useRouter.mockImplementation(() => ({
   push
@@ -48,5 +48,21 @@ describe('<Card />', () => {
     userEvent.click(screen.getByRole('link', { name: /character/i }))
 
     expect(push).toHaveBeenCalledTimes(1)
+  })
+
+  it('should favorite character on button click', () => {
+    render(<Card {...props} />)
+
+    userEvent.click(screen.getByRole('button', { name: /add favorite/i }))
+
+    expect(handleAddFavorite).toHaveBeenCalledTimes(1)
+  })
+
+  it('should remove favorite character on button click', () => {
+    render(<Card {...props} isFavorite={() => true} />)
+
+    userEvent.click(screen.getByRole('button', { name: /remove favorite/i }))
+
+    expect(handleRemoveFavorite).toHaveBeenCalledTimes(1)
   })
 })
