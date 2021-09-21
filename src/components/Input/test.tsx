@@ -6,13 +6,13 @@ import Input from '.'
 
 describe('<Input />', () => {
   it('should render the input', () => {
-    const { container } = render(<Input />)
+    const { container } = render(<Input icon={SearchIcon} />)
 
     expect(container).toBeInTheDocument()
   })
 
   it('should render the input styles as not focus', () => {
-    render(<Input placeholder="Input component" icon={SearchIcon} />)
+    render(<Input placeholder="Input component" />)
 
     const input = screen.getByPlaceholderText('Input component')
 
@@ -22,7 +22,7 @@ describe('<Input />', () => {
   })
 
   it('should render the input styles as focus', () => {
-    render(<Input placeholder="Input component" icon={SearchIcon} />)
+    render(<Input placeholder="Input component" />)
 
     const input = screen.getByPlaceholderText('Input component')
 
@@ -34,7 +34,7 @@ describe('<Input />', () => {
   })
 
   it('should render the input styles as blur', () => {
-    render(<Input placeholder="Input component" icon={SearchIcon} />)
+    render(<Input placeholder="Input component" />)
 
     const input = screen.getByPlaceholderText('Input component')
 

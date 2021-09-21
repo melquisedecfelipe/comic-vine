@@ -48,6 +48,7 @@ const Input = ({
           <Icon />
         </label>
       )}
+
       <input
         disabled={disabled}
         id={name}
