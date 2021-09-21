@@ -6,8 +6,8 @@ export default {
   title: 'Paginate',
   component: Paginate,
   args: {
-    page: 1,
-    totalPages: 2
+    page: 2,
+    totalPages: 3
   },
   argTypes: {
     handlePage: { action: 'handlePageClick' }
