@@ -4,6 +4,7 @@ describe('getStorageItem()', () => {
   beforeEach(() => {
     window.localStorage.clear()
   })
+
   it('should return the item from localStorage', () => {
     window.localStorage.setItem(
       '@Test:localStorage',
@@ -18,6 +19,7 @@ describe('setStorageItem()', () => {
   beforeEach(() => {
     window.localStorage.clear()
   })
+
   it('should add the item to localStorage', () => {
     setStorageItem('@Test:localStorage', ['1', '2'])
 
