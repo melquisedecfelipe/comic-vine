@@ -5,12 +5,18 @@ import Character, { CharacterProps } from 'templates/Character'
 
 import { getCharacter, getCharacters } from 'services/api'
 
-export default function Index(props: CharacterProps) {
+export default function Index({ slug, character }: CharacterProps) {
   const router = useRouter()
 
   if (router.isFallback) return null
 
-  return <Character {...props} handleBack={() => router.back()} />
+  return (
+    <Character
+      character={character}
+      handleBack={() => router.back()}
+      slug={slug}
+    />
+  )
 }
 
 export async function getStaticPaths() {
@@ -38,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     revalidate: 60,
     props: {
       slug: params?.slug,
-      ...data.results
+      character: data.results
     }
   }
 }
