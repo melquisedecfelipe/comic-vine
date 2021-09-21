@@ -193,6 +193,10 @@ exports[`<Card /> should render the card 1`] = `
         Aliases: 
         The Flame Alchemist Colonel Mustang General Mustang
       </small>
+      <small>
+        Gender: 
+        male
+      </small>
     </section>
   </div>
 </div>

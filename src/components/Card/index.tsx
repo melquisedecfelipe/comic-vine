@@ -41,7 +41,12 @@ const Card = ({ character, isVertical = false }: CardProps) => {
         </span>
 
         {!isVertical && character.deck && <p>{character.deck}</p>}
-        {!isVertical && <small>Aliases: {character.aliases}</small>}
+        {!isVertical && character.aliases && (
+          <small>Aliases: {character.aliases}</small>
+        )}
+        {!isVertical && character.gender && (
+          <small>Gender: {character.gender}</small>
+        )}
       </S.Section>
     </S.Wrapper>
   )
