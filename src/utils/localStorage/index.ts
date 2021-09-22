@@ -1,4 +1,4 @@
-import { Character } from 'types/characters'
+import { Character, CharacterEdit } from 'types/characters'
 
 export function getStorageItem(key: string) {
   if (typeof window === 'undefined') return
@@ -8,7 +8,10 @@ export function getStorageItem(key: string) {
   return JSON.parse(data!)
 }
 
-export function setStorageItem(key: string, value: string[] | Character[]) {
+export function setStorageItem(
+  key: string,
+  value: string[] | Character[] | CharacterEdit
+) {
   if (typeof window === 'undefined') return
 
   const data = JSON.stringify(value)
