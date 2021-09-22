@@ -57,6 +57,15 @@ export type CharacterDetail = {
   publisher: string
 } & Character
 
+export type CharacterEdit = {
+  aliases: string | null
+  birth: string | null
+  gender: 'Female' | 'Male' | 'Unknown'
+  id: number
+  name: string
+  realName: string
+}
+
 export type CharacterResponse = {
   results: Character
 }
