@@ -26,7 +26,7 @@ const Character = ({ character, handleBack }: CharacterProps) => {
   const [characterEdit, setCharacterEdit] = useState<CharacterEdit>(() => {
     const characterEditStorage = getStorageItem(
       character.id.toString()
-    ) as CharacterEdit
+    ) as CharacterEdit | null
 
     if (characterEditStorage) {
       return {
