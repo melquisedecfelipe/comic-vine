@@ -1,11 +1,15 @@
 import { useRouter } from 'next/dist/client/router'
 import Image from 'next/image'
 
+import { memo, useState } from 'react'
+
 import FavoriteButton from 'components/FavoriteButton'
+
+import { getStorageItem } from 'utils/localStorage'
 
 import * as S from './styles'
 
-import { Character } from 'types/characters'
+import { Character, CharacterEdit } from 'types/characters'
 
 export type CardProps = {
   character: Character
@@ -15,11 +19,21 @@ export type CardProps = {
 const Card = ({ character, isVertical = false }: CardProps) => {
   const { push } = useRouter()
 
+  const [characterEdit] = useState<CharacterEdit>(() => {
+    const characterEditStorage = getStorageItem(character.id.toString())
+
+    if (characterEditStorage) {
+      return characterEditStorage
+    }
+
+    return {}
+  })
+
   return (
     <S.Wrapper $isVertical={isVertical}>
       <S.ImageWrapper>
         <Image
-          alt={character.name}
+          alt={characterEdit.name || character.name}
           src={character.images.small}
           width={175}
           height={250}
@@ -36,20 +50,22 @@ const Card = ({ character, isVertical = false }: CardProps) => {
         onClick={() => push(`character/${character.slug}`)}
       >
         <span>
-          {!isVertical && character.birth && <small>{character.birth}</small>}
-          <h3>{character.name}</h3>
+          {!isVertical && character.birth && (
+            <small>{characterEdit.birth || character.birth}</small>
+          )}
+          <h3>{characterEdit.name || character.name}</h3>
         </span>
 
         {!isVertical && character.deck && <p>{character.deck}</p>}
         {!isVertical && character.aliases && (
-          <small>Aliases: {character.aliases}</small>
+          <small>Aliases: {characterEdit.aliases || character.aliases}</small>
         )}
         {!isVertical && character.gender && (
-          <small>Gender: {character.gender}</small>
+          <small>Gender: {characterEdit.gender || character.gender}</small>
         )}
       </S.Section>
     </S.Wrapper>
   )
 }
 
-export default Card
+export default memo(Card)
