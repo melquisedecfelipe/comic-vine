@@ -15,13 +15,13 @@ const props = {
 } as CharacterProps
 
 describe('<Character />', () => {
-  it('should render the home', () => {
+  it('should render the character', () => {
     const { container } = render(<Character {...props} />)
 
     expect(container).toBeInTheDocument()
   })
 
-  it('should back page in button click', () => {
+  it('should handle back page in button click', () => {
     render(<Character {...props} />)
 
     userEvent.click(screen.getByRole('button', { name: /go back/i }))

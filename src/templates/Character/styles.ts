@@ -8,8 +8,8 @@ export const Wrapper = styled.div``
 export const Actions = styled.div`
   ${({ theme }) => css`
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: ${theme.spacings.xlarge};
     margin-top: ${theme.spacings.small};
     margin-bottom: ${theme.spacings.xxsmall};
   `}
@@ -52,6 +52,7 @@ export const Content = styled.section`
   ${({ theme }) => css`
     > div {
       display: flex;
+      flex-wrap: wrap;
       gap: ${theme.spacings.xxsmall};
       padding-bottom: ${theme.spacings.small};
       border-bottom: 1px solid ${theme.colors.greyLight};

@@ -1,12 +1,18 @@
 import Image from 'next/image'
 
+import { memo, useCallback, useState } from 'react'
+
 import Button from 'components/Button'
+import CharacterForm from 'components/CharacterForm'
 import FavoriteButton from 'components/FavoriteButton'
 import TextContent from 'components/TextContent'
 
+import { formatDate, formatDateToIso } from 'utils/formatDate'
+import { getStorageItem, setStorageItem } from 'utils/localStorage'
+
 import * as S from './styles'
 
-import { CharacterDetail } from 'types/characters'
+import { CharacterDetail, CharacterEdit } from 'types/characters'
 
 import Base from '../Base'
 
@@ -16,51 +22,106 @@ export type CharacterProps = {
   character: CharacterDetail
 }
 
-const Character = ({ character, handleBack }: CharacterProps) => (
-  <Base>
-    <S.Wrapper>
-      <S.Actions>
-        <Button variant="outlined" onClick={handleBack}>
-          Go back
-        </Button>
+const Character = ({ character, handleBack }: CharacterProps) => {
+  const [characterEdit, setCharacterEdit] = useState<CharacterEdit>(() => {
+    const characterEditStorage = getStorageItem(
+      character.id.toString()
+    ) as CharacterEdit
 
-        <a href={character.site} target="_blank" rel="noopener noreferrer">
-          Site details
-        </a>
-      </S.Actions>
+    if (characterEditStorage) {
+      return {
+        aliases: characterEditStorage.aliases,
+        birth: formatDateToIso(characterEditStorage.birth),
+        gender: characterEditStorage.gender,
+        id: characterEditStorage.id,
+        name: characterEditStorage.name,
+        realName: characterEditStorage.realName
+      }
+    }
 
-      <S.Header>
-        <Image
-          alt={character.name}
-          src={character.images.screen}
-          height={500}
-          width={950}
-          objectFit="cover"
-        />
+    return {
+      aliases: character.aliases,
+      birth: formatDateToIso(character.birth),
+      gender: character.gender,
+      id: character.id,
+      name: character.name,
+      realName: character.realName
+    }
+  })
 
-        <FavoriteButton character={character} />
+  const handleSubmit = useCallback(() => {
+    const { birth, id, ...rest } = characterEdit
 
-        <section>
-          <h3>
-            {character.name} - {character.realName}
-          </h3>
-        </section>
-      </S.Header>
+    const characterEditWithFormatDate = {
+      birth: formatDate(birth),
+      id,
+      ...rest
+    } as CharacterEdit
 
-      <S.Content>
-        <div>
-          {character.birth && <small>Birth: {character.birth}</small>}
-          {character.gender && <small>Gender: {character.gender}</small>}
-          {character.origin && <small>Origin: {character.origin}</small>}
-          {character.publisher && (
+    setStorageItem(id.toString(), characterEditWithFormatDate)
+  }, [characterEdit])
+
+  return (
+    <Base>
+      <S.Wrapper>
+        <S.Actions>
+          <Button variant="outlined" onClick={handleBack}>
+            Go back
+          </Button>
+
+          <CharacterForm
+            characterEdit={characterEdit}
+            handleSubmit={handleSubmit}
+            setCharacterEdit={setCharacterEdit}
+          />
+        </S.Actions>
+
+        <S.Header>
+          <Image
+            alt={characterEdit.name || character.name}
+            src={character.images.screen}
+            height={500}
+            width={950}
+            objectFit="cover"
+          />
+
+          <FavoriteButton character={character} />
+
+          <section>
+            <h3>
+              {characterEdit.name || character.name} -{' '}
+              {characterEdit.realName || character.realName}
+            </h3>
+          </section>
+        </S.Header>
+
+        <S.Content>
+          <div>
+            <small>
+              <a
+                href={character.site}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Character site
+              </a>
+            </small>
+            <small>Gender: {characterEdit.gender || character.gender}</small>
+            <small>Origin: {character.origin}</small>
             <small>Publisher: {character.publisher}</small>
-          )}
-        </div>
 
-        <TextContent content={character.description} />
-      </S.Content>
-    </S.Wrapper>
-  </Base>
-)
+            {character.birth && (
+              <small>
+                Birth: {formatDate(characterEdit.birth) || character.birth}
+              </small>
+            )}
+          </div>
 
-export default Character
+          <TextContent content={character.description} />
+        </S.Content>
+      </S.Wrapper>
+    </Base>
+  )
+}
+
+export default memo(Character)
