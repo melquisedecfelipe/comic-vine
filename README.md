@@ -1,4 +1,4 @@
-<h1 align="center">Méliuz</h1>
+<h1 align="center">ComicVine</h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/melquisedecfelipe/meliuz.svg">
@@ -32,6 +32,7 @@ This project was developed with the following technologies:
 - [Jest](https://jestjs.io/)
 - [Next](https://nextjs.org/)
 - [Prettier](https://prettier.io/)
+- [React query](https://react-query.tanstack.com/)
 - [React testing library](https://testing-library.com/docs/react-testing-library/intro)
 - [Storybook](https://storybook.js.org/)
 - [Styled components](https://styled-components.com/)
