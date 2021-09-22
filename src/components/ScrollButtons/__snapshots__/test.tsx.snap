@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ScrollButtons /> should render the scroll buttons 1`] = `
+.c2 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 .c1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -53,8 +59,19 @@ exports[`<ScrollButtons /> should render the scroll buttons 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
   gap: 16px;
   padding: 24px;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
 }
 
 <div
@@ -64,13 +81,45 @@ exports[`<ScrollButtons /> should render the scroll buttons 1`] = `
     aria-label="Down"
     class="c1"
   >
-    Down
+    <svg
+      aria-hidden="true"
+      class="c2"
+      fill="currentColor"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        fill="none"
+        height="24"
+        width="24"
+      />
+      <path
+        d="M7.71 9.29l3.88 3.88 3.88-3.88a.996.996 0 111.41 1.41l-4.59 4.59a.996.996 0 01-1.41 0L6.29 10.7a.996.996 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+      />
+    </svg>
   </button>
   <button
     aria-label="Up"
     class="c1"
   >
-    Up
+    <svg
+      aria-hidden="true"
+      class="c2"
+      fill="currentColor"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        fill="none"
+        height="24"
+        width="24"
+      />
+      <path
+        d="M7.71 15.29l3.88-3.88 3.88 3.88a.996.996 0 101.41-1.41l-4.59-4.59a.996.996 0 00-1.41 0l-4.59 4.59a.996.996 0 000 1.41c.39.38 1.03.39 1.42 0z"
+      />
+    </svg>
   </button>
 </div>
 `;
