@@ -1,4 +1,4 @@
-import { useState, InputHTMLAttributes, useCallback } from 'react'
+import { useState, InputHTMLAttributes, useCallback, memo } from 'react'
 
 import { StyledIcon } from '@styled-icons/styled-icon'
 
@@ -15,7 +15,7 @@ const Input = ({
   disabled = false,
   handleChange,
   icon: Icon,
-  initialValue = '',
+  initialValue,
   name,
   ...props
 }: InputProps) => {
@@ -62,4 +62,4 @@ const Input = ({
   )
 }
 
-export default Input
+export default memo(Input)

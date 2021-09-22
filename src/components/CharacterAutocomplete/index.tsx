@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { useCallback, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 
 import useAutocomplete from '@material-ui/lab/useAutocomplete'
 import { Search as SearchIcon } from '@styled-icons/boxicons-regular/Search'
@@ -93,4 +93,4 @@ const CharacterAutocomplete = ({
   )
 }
 
-export default CharacterAutocomplete
+export default memo(CharacterAutocomplete)

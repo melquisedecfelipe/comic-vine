@@ -1,4 +1,4 @@
-import { useState, SelectHTMLAttributes, useCallback } from 'react'
+import { useState, SelectHTMLAttributes, useCallback, memo } from 'react'
 
 import { StyledIcon } from '@styled-icons/styled-icon'
 
@@ -21,7 +21,7 @@ const Select = ({
   disabled = false,
   handleChange,
   icon: Icon,
-  initialValue = '',
+  initialValue,
   name,
   options,
   placeholder,
@@ -79,4 +79,4 @@ const Select = ({
   )
 }
 
-export default Select
+export default memo(Select)

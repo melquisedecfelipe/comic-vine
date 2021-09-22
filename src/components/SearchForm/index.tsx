@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 import Button from 'components/Button'
 import CharacterAutocomplete, {
@@ -39,4 +39,4 @@ const SearchForm = ({
   </S.Wrapper>
 )
 
-export default SearchForm
+export default memo(SearchForm)
