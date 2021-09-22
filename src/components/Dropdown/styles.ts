@@ -82,5 +82,6 @@ export const Overlay = styled.div`
     left: 0;
     right: 0;
     z-index: ${theme.layers.overlay};
+    cursor: pointer;
   `}
 `
