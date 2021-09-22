@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 
 import { memo, useCallback, useState } from 'react'
@@ -63,6 +64,23 @@ const Character = ({ character, handleBack }: CharacterProps) => {
 
   return (
     <Base>
+      <NextSeo
+        title={`${character.name} - Comic Vine`}
+        description={character.deck || ''}
+        canonical={`http://localhost:3333/character/${character.slug}`}
+        openGraph={{
+          url: `http://localhost:3333/character/${character.slug}`,
+          title: `${character.name} - Comic Vine`,
+          description: character.deck || '',
+          images: [
+            {
+              url: character.images.screen,
+              alt: character.name
+            }
+          ]
+        }}
+      />
+
       <S.Wrapper>
         <S.Actions>
           <Button variant="outlined" onClick={handleBack}>

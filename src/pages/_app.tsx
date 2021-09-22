@@ -1,3 +1,4 @@
+import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import NextNprogress from 'nextjs-progressbar'
@@ -11,6 +12,8 @@ import { FavoriteProvider } from 'hooks/useFavorite'
 
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
+
+import SEO from '../../next-seo.config'
 
 const queryClient = new QueryClient()
 
@@ -30,6 +33,7 @@ function App({ Component, pageProps }: AppProps) {
                 content="Comic Vine is the largest comic book wiki in the universe"
               />
             </Head>
+            <DefaultSeo {...SEO} />
             <GlobalStyles />
             <NextNprogress
               color="#000000"
