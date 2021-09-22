@@ -56,7 +56,6 @@ const Input = ({
         onBlur={onBlur}
         onFocus={onFocus}
         value={value}
-        type="text"
         {...props}
       />
     </S.Wrapper>
