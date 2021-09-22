@@ -1,4 +1,4 @@
-<h1 align="center">ComicVine</h1>
+<h1 align="center">Comic Vine</h1>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/melquisedecfelipe/meliuz.svg">
@@ -43,10 +43,10 @@ This project was developed with the following technologies:
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16](https://nodejs.org/) or higher + [Yarn v1.13](https://yarnpkg.com/) or higher installed on your computer. From your command line:
 
 ```bash
-$ git clone https://github.com/melquisedecfelipe/meliuz
+$ git clone https://github.com/melquisedecfelipe/comic-vine
 
 # Go into the repository and install dependencies
-$ cd meliuz && yarn
+$ cd comic-vine && yarn
 
 # Run
 $ yarn dev
