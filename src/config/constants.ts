@@ -1,4 +1,4 @@
-export const APP_KEY = '@Méliuz'
+export const APP_KEY = '@ComicVine'
 
 export const FAVORITE_STORAGE = `${APP_KEY}:favoriteCharacters`
 
