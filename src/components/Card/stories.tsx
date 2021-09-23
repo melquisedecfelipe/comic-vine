@@ -33,9 +33,9 @@ export const Default: Story<CardProps> = args => (
   </div>
 )
 
-export const IsVertical: Story<CardProps> = args => <Card {...args} />
+export const AsVertical: Story<CardProps> = args => <Card {...args} />
 
-IsVertical.args = {
+AsVertical.args = {
   character: mockCharacters[0],
   isVertical: true
 }
