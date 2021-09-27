@@ -20,7 +20,7 @@ const bffCharactersHandler = async (
       api
         .get<BBFCharactersResponse>('characters', {
           params: {
-            api_key: 'cd2a0bcafaff4518a30153326ebfb3bb971c5bba',
+            api_key: process.env.API_KEY,
             format: 'json',
             limit,
             offset: Number(page) * Number(limit),
