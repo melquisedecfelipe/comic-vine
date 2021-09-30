@@ -1,21 +1,21 @@
 <h1 align="center">Comic Vine</h1>
 
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/melquisedecfelipe/meliuz.svg">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/melquisedecfelipe/comic-vine.svg">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/melquisedecfelipe/meliuz.svg">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/melquisedecfelipe/comic-vine.svg">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/melquisedecfelipe/meliuz.svg">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/melquisedecfelipe/comic-vine.svg">
 
-  <a href="https://github.com/melquisedecfelipe/meliuz/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/melquisedecfelipe/meliuz.svg">
+  <a href="https://github.com/melquisedecfelipe/comic-vine/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/melquisedecfelipe/comic-vine.svg">
   </a>
 
-  <a href="https://github.com/melquisedecfelipe/meliuz/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/melquisedecfelipe/meliuz.svg">
+  <a href="https://github.com/melquisedecfelipe/comic-vine/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/melquisedecfelipe/comic-vine.svg">
   </a>
 
-  <img alt="GitHub" src="https://img.shields.io/github/license/melquisedecfelipe/meliuz.svg">
+  <img alt="GitHub" src="https://img.shields.io/github/license/melquisedecfelipe/comic-vine.svg">
 </p>
 
 <p align="center">
