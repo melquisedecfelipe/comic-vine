@@ -15,6 +15,7 @@ export default {
     placeholder: 'Select here'
   },
   argTypes: {
+    handleChange: { action: 'selectChange' },
     icon: { type: '' }
   }
 } as Meta

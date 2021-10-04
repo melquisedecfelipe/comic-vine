@@ -13,6 +13,7 @@ export default {
     placeholder: 'Search here'
   },
   argTypes: {
+    handleChange: { action: 'inputChange' },
     icon: { type: '' }
   }
 } as Meta
