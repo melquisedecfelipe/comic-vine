@@ -16,5 +16,7 @@ export default {
 } as Meta
 
 export const Default: Story<CharacterFormProps> = args => (
-  <CharacterForm {...args} />
+  <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
+    <CharacterForm {...args} />
+  </div>
 )
